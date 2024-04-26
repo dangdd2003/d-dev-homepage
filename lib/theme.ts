@@ -30,6 +30,11 @@ const components: Record<string, StyleConfig> = {
         textDecorationThickness: 4,
         marginTop: 3,
         marginBottom: 4
+      },
+      'page-title': {
+        fontSize: 25,
+        marginTop: 3,
+        marginBottom: 5
       }
     }
   },
