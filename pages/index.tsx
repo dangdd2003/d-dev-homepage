@@ -7,7 +7,7 @@ import {
   Link,
   Button
 } from '@chakra-ui/react'
-import Layout from '@/components/layouts/artical'
+import Layout from '@/components/layouts/article'
 import Image from 'next/image'
 import Section from '@/components/section'
 import { BioSection, BioYear } from '@/components/bio'
@@ -35,7 +35,7 @@ export default function Home() {
         </Box>
         <Box display={{ md: 'flex' }}>
           <Box flexGrow={1}>
-            <Heading as="h2" variant="page-title">
+            <Heading as="h2">
               <AnimatedText text="Doan Dinh Dang" once={false} />
             </Heading>
             <p>

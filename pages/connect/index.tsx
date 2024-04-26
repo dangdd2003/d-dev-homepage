@@ -1,5 +1,5 @@
 import { Container, Box, Heading, Button } from '@chakra-ui/react'
-import Layout from '@/components/layouts/artical'
+import Layout from '@/components/layouts/article'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io'
@@ -12,7 +12,7 @@ export default function Connection() {
   return (
     <Layout title="Connect">
       <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+        <Heading as="h2" variant="page-title">
           Connect to me through
         </Heading>
         <Box {...props} my={5}>
