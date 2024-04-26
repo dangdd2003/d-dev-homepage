@@ -14,7 +14,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, title }: LayoutProps) {
-  const t = `${title} | D-Dev`
+  const t = `${title} | Doan Dinh Dang`
   return (
     <motion.article
       initial="hidden"
@@ -28,7 +28,7 @@ export default function Layout({ children, title }: LayoutProps) {
         {title && (
           <Head>
             <title>{t}</title>
-            <meta name="twitter:title" content={t} />
+            {/* <meta name="twitter:title" content={t} /> */}
             <meta property="og:title" content={t} />
           </Head>
         )}
