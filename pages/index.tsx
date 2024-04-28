@@ -9,11 +9,11 @@ import {
 } from '@chakra-ui/react'
 import Layout from '@/components/layouts/article'
 import Image from 'next/image'
-import Section from '@/components/section'
+import { Section } from '@/components/section'
 import { BioSection, BioYear } from '@/components/bio'
 import P from '@/components/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import { RevealText, AnimatedText } from '@/components/text-effect'
+import { RevealText, AnimatedText, TextLoop } from '@/components/text-effect'
 
 export default function Home() {
   const about = "Hello, I'm a 3rd year IT Student in USTH - Hanoi, Vietnam!"
@@ -75,10 +75,9 @@ export default function Home() {
           </Heading>
           <P>
             {/*May be add some animation for "Xin chao, Hello, Bonjour"*/}
-            Hello from a{' '}
-            {/*Add some animation for transition between "Student / Researcher / Developer"*/}{' '}
-            student ! My name is Dang. I&apos;m currently a third year student
-            studying Computer Science in{' '}
+            <TextLoop texts={['Hello', 'Xin chao', 'Bonjour']} /> from a student
+            !. My name is Dang. I&apos;m currently a third year student studying
+            Computer Science in{' '}
             <Link target="_blank" href="https://usth.edu.vn/">
               University of Science and Technology of Hanoi - USTH
             </Link>{' '}

@@ -3,7 +3,7 @@ import Layout from '@/components/layouts/article'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io'
-import Section from '@/components/section'
+import { Section } from '@/components/section'
 
 export default function Connection() {
   const props = {

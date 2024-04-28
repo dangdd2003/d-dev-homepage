@@ -1,5 +1,5 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
 
 function splitString(InputString: string) {
   const characters: string[] = []
@@ -66,5 +66,34 @@ export function AnimatedText({
         </motion.span>
       ))}
     </motion.span>
+  )
+}
+
+export function TextLoop({ texts }: { texts: string[] }) {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    setTimeout(() => {
+      let next = index + 1
+      if (next === texts.length) {
+        next = 0
+      }
+      setIndex(next)
+    }, 3 * 1000)
+  })
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.span
+        style={{ display: 'inline-block' }}
+        key={index}
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 20, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        {texts[index]}
+      </motion.span>
+    </AnimatePresence>
   )
 }

@@ -1,6 +1,12 @@
-import { Box, Container, Heading } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Heading,
+  ListItem,
+  UnorderedList
+} from '@chakra-ui/react'
 import Layout from '@/components/layouts/article'
-import Section from '@/components/section'
+import { Section, SubSection } from '@/components/section'
 import P, { Paragraph } from '@/components/paragraph'
 import { AnimatedText } from '@/components/text-effect'
 
@@ -22,37 +28,102 @@ export default function More() {
           <P>
             Working with number is just my cup of tea. I really like natural
             sciences especially Math, Physics, and Chemistry ( But not that good
-            to get any achievement:) ) It is just very funny to answer the
-            question &quot;why it is?&quot; in the nature in our daily life. I
-            started programming when i was in high school. I learned C++ as my
-            first programming language. At that time, i only learned how to
-            solve some basic algorithms. Not like right now, not only solution,
-            but also optimization - the hardest part :)
+            to get any achievement:) ) It is just very interesting and enjoyable
+            to answer the question &quot;why it is?&quot; in the nature in our
+            daily life. I started programming when i was in high school. I
+            learned C++ as my first programming language. At that time, i only
+            learned how to solve some basic algorithms. Not like right now, not
+            only solution, but also optimization - the hardest part :)
           </P>
         </Section>
         <Section delay="0.5">
           <Heading as="h3" variant="section-title">
+            <AnimatedText text="My skill" />
+          </Heading>
+          <SubSection delay="0.3">
+            <Heading as="h4" fontSize={16} my={2}>
+              Programming
+            </Heading>
+            <P>
+              My study focus on Machine Learning and Image Processing so I use
+              Python as the main programming language. I also use C/C++ for
+              Distribution System, and working with Computer Graphics.
+            </P>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Machine Learning and Image stuffs: Python (Mostly)
+                </ListItem>
+                <ListItem>Computer Grahics, Algorithm: C/C++</ListItem>
+                <ListItem>WebApp: Java, Typescript</ListItem>
+                <ListItem>Database/SQL: MySQL/MariaDB, PostGres</ListItem>
+                <ListItem>Script: Bash</ListItem>
+              </UnorderedList>
+            </Box>
+            <P>
+              I also have err... &quot;just enough to use&quot; experience with
+              some frameworks.
+            </P>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Computer Science: Scikit Learn, Tensor Flow, Keras, Pytorch
+                </ListItem>
+                <ListItem>
+                  WebApp Development: SpringBoot, Quarkus, React, Next.Js,
+                  Chakra UI, Framer Motion
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.5">
+            <Heading as="h4" fontSize={16} my={2}>
+              Opperating System
+            </Heading>
+            <P>
+              I use Linux as my main Operating System for most of my work. I
+              started using Fedora when I was in highschool, and now, I use Arch
+              Linux &quot;by the way&quot;.
+            </P>
+            <P>
+              I use Windows only for playing games..... And one more thing....
+              Visual Studio is only supported on Windows so ...
+            </P>
+          </SubSection>
+          <SubSection delay="0.7">
+            <Heading as="h4" fontSize={16} my={2}>
+              Others
+            </Heading>
+            <UnorderedList>
+              <ListItem>Git, Docker, JWT</ListItem>
+              <ListItem>
+                Microservice, Signal Processing, Deep Learning, Network
+              </ListItem>
+            </UnorderedList>
+          </SubSection>
+        </Section>
+        <Section delay="0.7">
+          <Heading as="h3" variant="section-title">
             <AnimatedText text="Free Time" />
           </Heading>
           <P>
-            I don&apos;t always study in the free time. I also play some
-            animated games such as Genshin Impact or Honkai Star Rail. I usually
-            read books, mangas, or daily tech newspapers. Another game that I
-            played ( but very rarely ) FPS games CS2 ( Counter Strike 2 ) on
-            Steam. Let make friend and we can play together! Terarria and Oxygen
-            Not Included are 2 survival &quot;offline&quot; games that I really
-            spent time on playing.
+            I am not that crazy for only studying even in the free time. I also
+            play some animated games such as Genshin Impact or Honkai Star Rail.
+            I usually read books, mangas, or daily tech newspapers. Another game
+            that I played ( but very rarely right now ) is FPS games CS2 (
+            Counter Strike 2 ) on Steam. Terarria and Oxygen Not Included are 2
+            adventure, survival &quot;offline&quot; games that I really spent
+            time on playing. Let make friend and we can play together!
           </P>
         </Section>
-        <Section delay="0.7">
+        <Section delay="0.9">
           <Heading as="h3" variant="section-title">
             <AnimatedText text="Solar System..." />
           </Heading>
           <Paragraph>
             Recently, I&apos;m trying to implement the solar system using OpenGL
-            in C++. I will bring it to my own website using WebGL ( an API for
-            3D Graphics on WebSite ) and Three.Js ( 3D Graphics Library for
-            WebSite ) soon.
+            in C++. I will bring it to my own website using WebGL and Three.Js
+            soon.
           </Paragraph>
         </Section>
       </Container>
