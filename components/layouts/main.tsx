@@ -3,6 +3,13 @@ import { Box, Container } from '@chakra-ui/react'
 import Navbar from '@/components/navbar'
 import type { NextRouter } from 'next/router'
 import Footer from '@/components/footer'
+import EarthLoader from '@/components/earth-loader'
+import dynamic from 'next/dynamic'
+
+const Earth = dynamic(() => import('@/components/earth'), {
+  ssr: false,
+  loading: () => <EarthLoader />
+})
 
 export default function Main({
   children,
@@ -58,9 +65,10 @@ export default function Main({
       <Navbar path={router.asPath} />
 
       <Container maxW="container.md" pt={14}>
+        <Earth />
         {children}
+        <Footer />
       </Container>
-      <Footer />
     </Box>
   )
 }
