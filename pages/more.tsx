@@ -118,12 +118,16 @@ export default function More() {
         </Section>
         <Section delay="0.9">
           <Heading as="h3" variant="section-title">
-            <AnimatedText text="Solar System..." />
+            <AnimatedText text="The Earth and ... Solar System" />
           </Heading>
           <Paragraph>
-            Recently, I&apos;m trying to implement the solar system using OpenGL
-            in C++. I will bring it to my own website using WebGL and Three.Js
-            soon.
+            Recently, I&apos;m trying to implement the solar system. Mostly, I
+            just map the textures to the meshes so it is not too hard. However,
+            Calculating the orbits, rotations, positions of each planet for the
+            whole system takes lots of my time. I will bring it to my website
+            soon ... And one more thing ..... The Earth is just basic texture
+            mapping and it looks ... not to clear and bright. I&apos;m still
+            finding the best mapping so that the Earth might look clearer.
           </Paragraph>
         </Section>
       </Container>
