@@ -18,16 +18,18 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@types/node": "^20.12.7",
     "framer-motion": "^11.1.7",
     "next": "^14.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.1.0"
+    "react-icons": "^5.1.0",
+    "three": "^0.164.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
+    "@types/node": "^20.12.7",
+    "@types/three": "^0.164.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.2",
     "prettier": "^3.2.5",
