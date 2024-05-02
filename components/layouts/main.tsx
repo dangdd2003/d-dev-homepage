@@ -31,16 +31,21 @@ export default function Main({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Doan Dinh Dang | Homepage" />
         <meta property="og:description" content="Dang's Homepage" />
-        <meta property="og:image" content="" />
+        <meta
+          property="og:image"
+          content="https://www.dangdd.id.vn/homepage.png"
+        />
         <meta property="og:site_name" content="Doan Dinh Dang" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="dangdd.id.vn" />
         <meta property="twitter:url" content="https://www.dangdd.id.vn" />
-        <meta property="twitter:url" content="https://www.dangdd.id.vn" />
         <meta name="twitter:title" content="Doan Dinh Dang | Homepage" />
         <meta name="twitter:description" content="Dang's Homepage" />
-        <meta name="twitter:image" content="" />
+        <meta
+          name="twitter:image"
+          content="https://www.dangdd.id.vn/homepage.png"
+        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
