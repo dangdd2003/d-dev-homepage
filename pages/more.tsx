@@ -56,7 +56,7 @@ export default function More() {
                 </ListItem>
                 <ListItem>Computer Grahics, Algorithm: C/C++</ListItem>
                 <ListItem>WebApp: Java, Typescript</ListItem>
-                <ListItem>Database/SQL: MySQL/MariaDB, PostGres</ListItem>
+                <ListItem>Database/SQL: MySQL/MariaDB, PostGresSQL</ListItem>
                 <ListItem>Script: Bash</ListItem>
               </UnorderedList>
             </Box>
@@ -71,8 +71,9 @@ export default function More() {
                 </ListItem>
                 <ListItem>
                   WebApp Development: SpringBoot, Quarkus, React, Next.Js,
-                  Chakra UI, Framer Motion
+                  Chakra UI, Framer Motion, Three.Js
                 </ListItem>
+                <ListItem>Query Language: Hibernate ORM, JPA</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -82,12 +83,12 @@ export default function More() {
             </Heading>
             <P>
               I use Linux as my main Operating System for most of my work. I
-              started using Fedora when I was in highschool, and now, I use Arch
+              started using Fedora when I was in highschool. And now, I use Arch
               Linux &quot;by the way&quot;.
             </P>
             <P>
-              I use Windows only for playing games..... And one more thing....
-              Visual Studio is only supported on Windows so ...
+              I use Windows only for playing games ..... And one more thing ....
+              Visual Studio only supports Windows so ...
             </P>
           </SubSection>
           <SubSection delay="0.7">
@@ -123,11 +124,12 @@ export default function More() {
           <Paragraph>
             Recently, I&apos;m trying to implement the solar system. Mostly, I
             just map the textures to the meshes so it is not too hard. However,
-            Calculating the orbits, rotations, positions of each planet for the
+            calculating the orbits, rotations, positions of each planet for the
             whole system takes lots of my time. I will bring it to my website
             soon ... And one more thing ..... The Earth is just basic texture
             mapping and it looks ... not to clear and bright. I&apos;m still
-            finding the best mapping so that the Earth might look clearer.
+            finding the best mapping so that the Earth might look better. Why
+            Earth? ... It is just where we are leaving!
           </Paragraph>
         </Section>
       </Container>
