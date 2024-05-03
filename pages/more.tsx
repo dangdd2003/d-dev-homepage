@@ -26,14 +26,17 @@ export default function More() {
             <AnimatedText text="Why I choose Computer Science" />
           </Heading>
           <P>
-            Working with number is just my cup of tea. I really like natural
-            sciences especially Math, Physics, and Chemistry ( But not that good
-            to get any achievement:) ) It is just very interesting and enjoyable
-            to answer the question &quot;why it is?&quot; in the nature in our
-            daily life. I started programming when i was in high school. I
-            learned C++ as my first programming language. At that time, i only
-            learned how to solve some basic algorithms. Not like right now, not
-            only solution, but also optimization - the hardest part :)
+            Working with number is my cup of tea. I really like natural sciences
+            especially Math, Physics, and Chemistry ( But not that good to get
+            any achievements:) ). It is just very interesting and enjoyable to
+            answer the question &quot;why it is?&quot;. I really like to discuss
+            with others about common natural phenomena.
+          </P>
+          <P>
+            I started programming when i was in high school. I learned C++ as my
+            first programming language. At that time, i only learned how to
+            solve some basic algorithms. Not like right now, not only solution,
+            but also optimization - the hardest part :)
           </P>
         </Section>
         <Section delay="0.5">
@@ -79,12 +82,12 @@ export default function More() {
           </SubSection>
           <SubSection delay="0.5">
             <Heading as="h4" fontSize={16} my={2}>
-              Opperating System
+              Operating System
             </Heading>
             <P>
               I use Linux as my main Operating System for most of my work. I
-              started using Fedora when I was in highschool. And now, I use Arch
-              Linux &quot;by the way&quot;.
+              started using Fedora when I was in high school. And now, I use
+              Arch Linux &quot;by the way&quot;.
             </P>
             <P>
               I use Windows only for playing games ..... And one more thing ....
@@ -105,7 +108,7 @@ export default function More() {
         </Section>
         <Section delay="0.7">
           <Heading as="h3" variant="section-title">
-            <AnimatedText text="Free Time" />
+            <AnimatedText text="Free time only for studying???" />
           </Heading>
           <P>
             I am not that crazy for only studying even in the free time. I also

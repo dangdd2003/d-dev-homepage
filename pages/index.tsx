@@ -75,18 +75,18 @@ export default function Home() {
           </Heading>
           <P>
             {/*May be add some animation for "Xin chao, Hello, Bonjour"*/}
-            <TextLoop texts={['Hello', 'Xin chao', 'Bonjour']} /> from a student
-            !. My name is Dang. I&apos;m currently a third year student studying
-            Computer Science in{' '}
+            <TextLoop texts={['Hello', 'Xin Chào', 'Bonjour']} /> from a
+            student! My name is Dang. I&apos;m currently a third year student
+            studying Computer Science in{' '}
             <Link target="_blank" href="https://usth.edu.vn/">
               University of Science and Technology of Hanoi - USTH
-            </Link>{' '}
-            I spend most of my time on researching, studying, learning about
-            Machine Learning stuff. When I have free time, i usually learn
-            another stuff like DevOps and Distributed System or 3D Modelling in
-            Computer Graphics. I also learn French as my 3rd language. If you
-            asked me what is my carrier path, I would say Machine Learning
-            Engineer. It is my dream job ! When everything is automated ...
+            </Link>
+            . I spend most of my time on researching and studying about Machine
+            Learning stuff. During my free time, I usually learn other engineer
+            fields like DevOps and Distributed System or 3D Modelling in
+            Computer Graphics. I also learn French as my 3rd language. My dream
+            carrier path is to become a Machine Learning Engineer. Imagine that,
+            when everything is automated ...
           </P>
           <Box {...props} my={4}>
             <Button
