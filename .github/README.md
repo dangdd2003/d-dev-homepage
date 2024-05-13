@@ -21,4 +21,4 @@ https://www.dangdd.id.vn
 
 ## Credits
 
-Thank [@crafdog](https://github.com/craftzdog) for the theme and inspiration
+Thank [@craftzdog](https://github.com/craftzdog) for the theme and inspiration

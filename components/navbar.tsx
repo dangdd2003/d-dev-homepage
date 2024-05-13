@@ -110,7 +110,7 @@ export default function Navbar(props: NavbarProps) {
             More
           </LinkItem>
           <LinkItem
-            href="https://github.com/dangdd2003"
+            href="https://github.com/dangdd2003/d-dev-homepage"
             path={path}
             target="_blank"
             display="inline-flex"
@@ -150,7 +150,7 @@ export default function Navbar(props: NavbarProps) {
                 <MenuItem
                   as={Link}
                   isExternal
-                  href="https://github.com/dangdd2003"
+                  href="https://github.com/dangdd2003/d-dev-homepage"
                 >
                   View Source
                   <Box ml={2}>
