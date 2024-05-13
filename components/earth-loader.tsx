@@ -21,7 +21,7 @@ export const EarthContainer = forwardRef(
   ) => (
     <Box
       ref={ref}
-      className="voxel-dog"
+      className="earth"
       m="auto"
       mt={['-20px', '-60px', '-120px']}
       mb={['-40px', '-140px', '-200px']}
@@ -33,7 +33,7 @@ export const EarthContainer = forwardRef(
     </Box>
   )
 )
-EarthContainer.displayName = 'DogContainer'
+EarthContainer.displayName = 'EarthContainer'
 
 export default function Loader() {
   return (

@@ -8,7 +8,7 @@ function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
-const VoxelDog = () => {
+export default function Earth() {
   const refContainer = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
   const refRenderer = useRef<THREE.WebGLRenderer>()
@@ -112,5 +112,3 @@ const VoxelDog = () => {
     </EarthContainer>
   )
 }
-
-export default VoxelDog
