@@ -138,9 +138,9 @@ export default function Navbar(props: NavbarProps) {
                 <MenuItem as={MenuLink} href="/works">
                   Works
                 </MenuItem>
-                <MenuItem as={MenuLink} href="/articles">
-                  Articles
-                </MenuItem>
+                {/* <MenuItem as={MenuLink} href="/articles"> */}
+                {/*   Articles */}
+                {/* </MenuItem> */}
                 <MenuItem as={MenuLink} href="/connect">
                   Connect
                 </MenuItem>

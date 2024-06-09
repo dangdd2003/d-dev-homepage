@@ -19,14 +19,14 @@ export default function Connection() {
           <Section delay="0.3">
             <Button
               as={Link}
-              href="mailto:dangdoan2206@gmail.com"
+              href="mailto:d-dev@dangdd.me"
               scroll={false}
               leftIcon={<SiGmail />}
               colorScheme="teal"
               width={300}
               target="_blank"
             >
-              dangdoan2206@gmail.com
+              d-dev@dangdd.me
             </Button>
           </Section>
           <Section delay="0.5">

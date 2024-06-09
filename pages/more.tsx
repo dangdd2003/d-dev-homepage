@@ -1,16 +1,22 @@
 import {
   Box,
+  Button,
   Container,
   Heading,
   ListItem,
   UnorderedList
 } from '@chakra-ui/react'
+import Link from 'next/link'
+import { SiGmail } from 'react-icons/si'
 import Layout from '@/components/layouts/article'
 import { Section, SubSection } from '@/components/section'
 import P, { Paragraph } from '@/components/paragraph'
 import { AnimatedText } from '@/components/text-effect'
 
 export default function More() {
+  const props = {
+    align: 'center'
+  }
   return (
     <Layout title="More">
       <Container>
@@ -119,6 +125,19 @@ export default function More() {
             adventure, survival &quot;offline&quot; games that I really spent
             time on playing. Let make friend and we can play together!
           </P>
+          <Box {...props} my={4}>
+            <Button
+              as={Link}
+              href="mailto:d-gamin@dangdd.me"
+              scroll={false}
+              leftIcon={<SiGmail />}
+              colorScheme="teal"
+              width={300}
+              target="_blank"
+            >
+              d-gaming@dangdd.me
+            </Button>
+          </Box>
         </Section>
         <Section delay="0.9">
           <Heading as="h3" variant="section-title">
@@ -128,11 +147,11 @@ export default function More() {
             Recently, I&apos;m trying to implement the solar system. Mostly, I
             just map the textures to the meshes so it is not too hard. However,
             calculating the orbits, rotations, positions of each planet for the
-            whole system takes lots of my time. I will bring it to my website
-            soon ... And one more thing ..... The Earth is just basic texture
-            mapping and it looks ... not to clear and bright. I&apos;m still
-            finding the best mapping so that the Earth might look better. Why
-            Earth? ... It is just where we are leaving!
+            whole system tooks lots of my time. I will bring it to my website
+            soon ..... The Earth is just basic texture mapping so it looks ...
+            not to clear and bright. I&apos;m still finding the best mapping so
+            that the Earth might look better. Why Earth? ... It is just where we
+            are leaving:D
           </Paragraph>
         </Section>
       </Container>
