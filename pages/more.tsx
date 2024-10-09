@@ -54,14 +54,16 @@ export default function More() {
               Programming
             </Heading>
             <P>
-              My study focus on Machine Learning and Image Processing so I use
-              Python as the main programming language. I also use C/C++ for
-              Distribution System, and working with Computer Graphics.
+              My study focuses on Mathematical problems in AI, Machine Learning,
+              and Signal/Image Processing stuffs. I also learn and read lots of
+              document about Distributed System and spend my free time on
+              practicing deploying works with some CI/CD tools. Sometimes, i
+              also do some math for 3D modelling or animated visualization.
             </P>
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  Machine Learning and Image stuffs: Python (Mostly)
+                  AI/ML and Signal/Image stuffs: Python (Mostly)
                 </ListItem>
                 <ListItem>Computer Grahics, Algorithm: C/C++</ListItem>
                 <ListItem>WebApp: Java, Typescript</ListItem>
@@ -76,13 +78,14 @@ export default function More() {
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  Computer Science: Scikit Learn, Tensor Flow, Keras, Pytorch
+                  Computer Science: Scikit Learn, Tensor Flow, Keras, Pytorch,
+                  OpenCV
                 </ListItem>
                 <ListItem>
-                  WebApp Development: SpringBoot, Quarkus, React, Next.Js,
-                  Chakra UI, Framer Motion, Three.Js
+                  WebApp Development: SpringBoot, Quarkus, React Native,
+                  Next.Js, Three.Js
                 </ListItem>
-                <ListItem>Query Language: Hibernate ORM, JPA</ListItem>
+                <ListItem>Query Language: Hibernate ORM, JPA, Mysql</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -104,12 +107,14 @@ export default function More() {
             <Heading as="h4" fontSize={16} my={2}>
               Others
             </Heading>
-            <UnorderedList>
-              <ListItem>Git, Docker, JWT</ListItem>
-              <ListItem>
-                Microservice, Signal Processing, Deep Learning, Network
-              </ListItem>
-            </UnorderedList>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>Git, Docker, JWT, CI/CD</ListItem>
+                <ListItem>
+                  Microservice, Networking, System Administration
+                </ListItem>
+              </UnorderedList>
+            </Box>
           </SubSection>
         </Section>
         <Section delay="0.7">
@@ -117,13 +122,14 @@ export default function More() {
             <AnimatedText text="Free time only for studying???" />
           </Heading>
           <P>
-            I am not that crazy for only studying even in the free time. I also
-            play some animated games such as Genshin Impact or Honkai Star Rail.
-            I usually read books, mangas, or daily tech newspapers. Another game
-            that I played ( but very rarely right now ) is FPS games CS2 (
-            Counter Strike 2 ) on Steam. Terarria and Oxygen Not Included are 2
-            adventure, survival &quot;offline&quot; games that I really spent
-            time on playing. Let make friend and we can play together!
+            I am not that crazy for only studying even in the free time. I play
+            some animated games such as Genshin Impact or Honkai Star Rail (just
+            say wjbu stuffs lol). I usually read books, mangas, or daily tech
+            newspapers whenever the phone is on my hand. I also played FPS games
+            CS2 (Counter Strike 2) on Steam and Valorant (but very rarely right
+            now). Terarria and Oxygen Not Included are 2 adventure, survival
+            &quot;offline&quot; games that I really spent time on playing. Let
+            make friend and we can play together!
           </P>
           <Box {...props} my={4}>
             <Button
@@ -141,17 +147,12 @@ export default function More() {
         </Section>
         <Section delay="0.9">
           <Heading as="h3" variant="section-title">
-            <AnimatedText text="The Earth and ... Solar System" />
+            <AnimatedText text="The Earth? ..." />
           </Heading>
           <Paragraph>
-            Recently, I&apos;m trying to implement the solar system. Mostly, I
-            just map the textures to the meshes so it is not too hard. However,
-            calculating the orbits, rotations, positions of each planet for the
-            whole system tooks lots of my time. I will bring it to my website
-            soon ..... The Earth is just basic texture mapping so it looks ...
-            not to clear and bright. I&apos;m still finding the best mapping so
-            that the Earth might look better. Why Earth? ... It is just where we
-            are leaving:D
+            Why The Earth? ... It is just where we are leaving:D. I just came up
+            with the idea of adding the earth to the page when trying to
+            decorate it.
           </Paragraph>
         </Section>
       </Container>

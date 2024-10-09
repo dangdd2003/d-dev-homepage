@@ -81,12 +81,13 @@ export default function Home() {
             <Link target="_blank" href="https://usth.edu.vn/">
               University of Science and Technology of Hanoi - USTH
             </Link>
-            . I spend most of my time on researching and studying about Machine
-            Learning stuff. During my free time, I usually learn other engineer
-            fields like DevOps and Distributed System or 3D Modelling in
-            Computer Graphics. I also learn French as my 3rd language. My dream
-            carrier path is to become a Machine Learning Engineer. Imagine that,
-            when everything is automated ...
+            . I spend most of my time on researching and studying about AI and
+            Machine Learning stuffs. During my free time, I usually learn other
+            engineer skills such as DevOps and Distributed System or 3D
+            Modelling in Computer Graphics. I also learn French as my 3rd
+            language. My dream carrier path is to become a Machine Learning
+            Engineer. Imagine that, when everything is automated ... and you can
+            use "math" to solve most of the problems.
           </P>
           <Box {...props} my={4}>
             <Button
