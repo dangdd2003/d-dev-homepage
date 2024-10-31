@@ -87,7 +87,7 @@ export default function Home() {
             Modelling in Computer Graphics. I also learn French as my 3rd
             language. My dream carrier path is to become a Machine Learning
             Engineer. Imagine that, when everything is automated ... and you can
-            use "math" to solve most of the problems.
+            use &quot;math&quot; to solve most of the problems.
           </P>
           <Box {...props} my={4}>
             <Button
