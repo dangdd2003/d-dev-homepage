@@ -35,9 +35,10 @@ jobs:
       - name: Cache Node.Js packages
         id: cache
         uses: actions/cache@v4.1.2
-        path: ${{ steps.cache-info.outputs.dir }}
-        key: ${{ runner.os }}-npm_cache-${{ steps.cache-info.outputs.date }}-${{ hashFiles('**/package-lock.json') }}
-        retore-key: ${{ runner.os }}-npm_cache-
+        with:
+          path: ${{ steps.cache-info.outputs.dir }}
+          key: ${{ runner.os }}-npm_cache-${{ steps.cache-info.outputs.date }}-${{ hashFiles('**/package-lock.json') }}
+          restore-key: ${{ runner.os }}-npm_cache-
 
       - name: Instal dependencies
         if: steps.cache.outputs.cache-hit != 'true'
