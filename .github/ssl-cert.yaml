@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: /ssl-cert/dangdd_me_chain.crt
+      keyFile: /ssl-cert/dangdd_me.key

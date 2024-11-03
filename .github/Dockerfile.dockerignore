@@ -1,0 +1,13 @@
+**/.git
+**/.github
+**/.vscode
+**/.dockerignore
+**/Dockerfile
+**/docker_compose*
+**/node_modules
+**/.next
+**/npm-debug.log
+*.md
+!.github/README.md
+!.github/homepage.png
+**/ssl-cert
