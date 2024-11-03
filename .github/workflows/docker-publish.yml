@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-          echo "date=$(date -u "+%m/%d/%Y"" >> ${GITHUB_OUTPUT}
+          echo "date=$(date -u "+%m/%d/%Y")" >> ${GITHUB_OUTPUT}
 
       - name: Cache Node.Js packages
         id: cache
@@ -88,6 +88,6 @@ jobs:
           context: .
           file: .github/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.IMAGE_NAME }}:main
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
           cache-from: type=gha
           cache-to: type=gha,mode=max
