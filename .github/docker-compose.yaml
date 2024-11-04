@@ -11,6 +11,7 @@ services:
       - '--remove-volumes'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
+    restart: always
   reverse-proxy:
     image: traefik:latest
     command:
@@ -30,6 +31,7 @@ services:
       - '$PWD/.github/ssl-cert.yaml:/etc/traefik/ssl-cert.yaml:rw'
       - '$PWD/ssl-cert/:/ssl-cert'
       - '/var/run/docker.sock:/var/run/docker.sock'
+    restary: always
   homepage:
     image: ghcr.io/dangdd2003/d-dev-homepage:main
     labels:
@@ -41,3 +43,4 @@ services:
     deploy:
       mode: replicated
       replicas: 3
+    restart: always
