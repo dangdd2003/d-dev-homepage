@@ -38,7 +38,7 @@ jobs:
         with:
           path: ${{ steps.cache-info.outputs.dir }}
           key: ${{ runner.os }}-npm_cache-${{ steps.cache-info.outputs.date }}
-          restore-key: ${{ runner.os }}-npm_cache-
+          restore-keys: ${{ runner.os }}-npm_cache-
 
       - name: Instal dependencies
         if: steps.cache.outputs.cache-hit != 'true'
