@@ -30,7 +30,8 @@ jobs:
         shell: bash
         run: |
           echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-          echo "date=$(TZ=Asia/Ho_Chi_Minh date "+%H:%M:%S-%m/%d/%Y")" >> ${GITHUB_OUTPUT}
+          # Update the cache daily
+          echo "date=$(TZ=Asia/Ho_Chi_Minh date "+%m/%d/%Y")" >> ${GITHUB_OUTPUT}
 
       - name: Cache Node.Js packages
         id: cache
@@ -39,6 +40,7 @@ jobs:
           path: |
             ${{ steps.cache-info.outputs.dir }}
             ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/node_modules
           key: ${{ runner.os }}-npm_cache-${{ steps.cache-info.outputs.date }}
           restore-keys: ${{ runner.os }}-npm_cache-
 
@@ -46,7 +48,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Build the project
+      - name: Test build the project
         run: npm run build
 
       - name: Run linting
