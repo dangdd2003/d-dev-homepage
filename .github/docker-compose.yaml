@@ -2,6 +2,8 @@ name: d-dev
 services:
   watchtower:
     image: containrrr/watchtower
+    environment:
+      TZ: 'Asia/Ho_Chi_Minh'
     command:
       - '--label-enable'
       - '--interval'
@@ -9,6 +11,7 @@ services:
       - '--rolling-restart'
       - '--cleanup'
       - '--remove-volumes'
+      - '--include-restarting'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
     restart: always
@@ -31,7 +34,7 @@ services:
       - '$PWD/.github/ssl-cert.yaml:/etc/traefik/ssl-cert.yaml:rw'
       - '$PWD/ssl-cert/:/ssl-cert'
       - '/var/run/docker.sock:/var/run/docker.sock'
-    restary: always
+    restart: always
   homepage:
     image: ghcr.io/dangdd2003/d-dev-homepage:main
     labels:
@@ -39,6 +42,9 @@ services:
       - 'traefik.http.routers.homepage-router.rule=Host(`dangdd.me`) || Host(`www.dangdd.me`)'
       - 'traefik.http.routers.homepage-router.entrypoints=websecure'
       - 'traefik.http.routers.homepage-router.tls=true'
+      - 'traefik.http.routers.homepage-router.middlewares=homepage-middlewares'
+      - 'traefik.http.middlewares.homepage-middlewares.redirectregex.regex=^https?://(?:www\.)?(.+)'
+      - 'traefik.http.middlewares.homepage-middlewares.redirectregex.replacement=https://www.$${1}'
       - 'com.centurylinklabs.watchtower.enable=true'
     deploy:
       mode: replicated
