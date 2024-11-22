@@ -27,24 +27,24 @@ export default function Main({
         <meta name="author" content="Đoàn Đình Đăng" />
         <meta name="author" content="d-dev" />
 
-        <meta property="og:url" content="https://www.dangdd.id.vn" />
+        <meta property="og:url" content="https://www.dangdd.me" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Doan Dinh Dang | Homepage" />
         <meta property="og:description" content="Dang's Homepage" />
         <meta
           property="og:image"
-          content="https://www.dangdd.id.vn/homepage.png"
+          content="https://www.dangdd.me/homepage.png"
         />
         <meta property="og:site_name" content="Doan Dinh Dang" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="dangdd.id.vn" />
-        <meta property="twitter:url" content="https://www.dangdd.id.vn" />
+        <meta property="twitter:domain" content="dangdd.me" />
+        <meta property="twitter:url" content="https://www.dangdd.me" />
         <meta name="twitter:title" content="Doan Dinh Dang | Homepage" />
         <meta name="twitter:description" content="Dang's Homepage" />
         <meta
           name="twitter:image"
-          content="https://www.dangdd.id.vn/homepage.png"
+          content="https://www.dangdd.me/homepage.png"
         />
         <link
           rel="apple-touch-icon"

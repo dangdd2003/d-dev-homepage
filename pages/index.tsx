@@ -134,7 +134,7 @@ export default function Home() {
           </Heading>
           <P>
             Music, Piano (but haven&apos;t known how to play yet :(( ), Reading,
-            Machine Learning, Computer Vision, 3D Modelling
+            Machine Learning, Computer Vision, 3D Modelling.
           </P>
         </Section>
 
