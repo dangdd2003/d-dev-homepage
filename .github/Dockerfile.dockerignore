@@ -6,6 +6,7 @@
 **/docker_compose*
 **/node_modules
 **/.next
+**/package-lock.json
 **/npm-debug.log
 *.md
 !.github/README.md
