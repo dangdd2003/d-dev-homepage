@@ -1,3 +1,7 @@
+import Layout from '@/components/layouts/article'
+import P, { Paragraph } from '@/components/paragraph'
+import { Section, SubSection } from '@/components/section'
+import { AnimatedText } from '@/components/text-effect'
 import {
   Box,
   Button,
@@ -8,10 +12,6 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
-import Layout from '@/components/layouts/article'
-import { Section, SubSection } from '@/components/section'
-import P, { Paragraph } from '@/components/paragraph'
-import { AnimatedText } from '@/components/text-effect'
 
 export default function More() {
   const props = {
@@ -34,15 +34,15 @@ export default function More() {
           <P>
             Working with number is my cup of tea. I really like natural sciences
             especially Math, Physics, and Chemistry ( But not that good to get
-            any achievements:) ). It is just very interesting and enjoyable to
-            answer the question &quot;why it is?&quot;. I really like to discuss
-            with others about common natural phenomena.
+            any achievements &#128579;). It is just very interesting and
+            enjoyable to answer the question &quot;why it is?&quot;. I really
+            like to discuss with others about common natural phenomena.
           </P>
           <P>
             I started programming when i was in high school. I learned C++ as my
             first programming language. At that time, i only learned how to
-            solve some basic algorithms. Not like right now, not only solution,
-            but also optimization - the hardest part :)
+            solve some basic algorithms. Not like right now, not only the
+            solution, but also the optimization - definitely the hardest part :)
           </P>
         </Section>
         <Section delay="0.5">
@@ -56,24 +56,28 @@ export default function More() {
             <P>
               My study focuses on Mathematical problems in AI, Machine Learning,
               and Signal/Image Processing stuffs. I also learn and read lots of
-              document about Distributed System and spend my free time on
-              practicing deploying works with some CI/CD tools. Sometimes, i
-              also do some math for 3D modelling or animated visualization.
+              document about computer system, CI/CD workflows, system
+              optimization. Sometimes, i do some math for 3D modelling or
+              animated visualization. It is really fun to do that.
             </P>
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  AI/ML and Signal/Image stuffs: Python (Mostly)
+                  Computer science stuffs: Python (mostly), and ... Matlab
+                  (rarely, only for advanced calculation)
                 </ListItem>
-                <ListItem>Computer Grahics, Algorithm: C/C++</ListItem>
-                <ListItem>WebApp: Java, Typescript</ListItem>
+                <ListItem>Computer Graphics, Algorithm: C/C++</ListItem>
+                <ListItem>
+                  WebApp: Java, Typescript (not JavaScript, sorry, i don&apos;t
+                  like NO typed language)
+                </ListItem>
                 <ListItem>Database/SQL: MySQL/MariaDB, PostGresSQL</ListItem>
-                <ListItem>Script: Bash</ListItem>
+                <ListItem>Scripting with bash and zsh</ListItem>
               </UnorderedList>
             </Box>
             <P>
               I also have err... &quot;just enough to use&quot; experience with
-              some frameworks.
+              some frameworks, libraries, tools.
             </P>
             <Box ml={3} my={3}>
               <UnorderedList>
@@ -85,7 +89,15 @@ export default function More() {
                   WebApp Development: SpringBoot, Quarkus, React Native,
                   Next.Js, Three.Js
                 </ListItem>
-                <ListItem>Query Language: Hibernate ORM, JPA, Mysql</ListItem>
+                <ListItem>
+                  Query Language: Hibernate ORM, JPA, Native SQL
+                </ListItem>
+                <ListItem>
+                  Deployment/Version Control: Docker (advanced, except for
+                  Docker Swarm, still learning &#128577; ), Git, Github Action,
+                  Travis CI.
+                </ListItem>
+                <ListItem>Reverse Proxy: Nginx, Traefik</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -96,11 +108,13 @@ export default function More() {
             <P>
               I use Linux as my main Operating System for most of my work. I
               started using Fedora when I was in high school. And now, I use
-              Arch Linux &quot;by the way&quot;.
+              Arch Linux &quot;by the way&quot;. I could say, I am a
+              &apos;sub-advanced&apos; linux user lol! &#128541;
             </P>
             <P>
-              I use Windows only for playing games ..... And one more thing ....
-              Visual Studio only supports Windows so ...
+              I use Windows only for ... playing games ..... And one more thing
+              ... MS Visual Studio only supports Windows due to its operation
+              based on DDL so ... &#129301;
             </P>
           </SubSection>
           <SubSection delay="0.7">
@@ -109,10 +123,10 @@ export default function More() {
             </Heading>
             <Box ml={3} my={3}>
               <UnorderedList>
-                <ListItem>Git, Docker, JWT, CI/CD</ListItem>
                 <ListItem>
-                  Microservice, Networking, System Administration
+                  JWT, REST Api, Google Cloud Platform, MS Azure
                 </ListItem>
+                <ListItem>Microservice, Networking</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -134,7 +148,7 @@ export default function More() {
           <Box {...props} my={4}>
             <Button
               as={Link}
-              href="mailto:d-gamin@dangdd.me"
+              href="mailto:d-gaming@dangdd.me"
               scroll={false}
               leftIcon={<SiGmail />}
               colorScheme="teal"

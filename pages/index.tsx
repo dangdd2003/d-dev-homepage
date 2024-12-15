@@ -1,19 +1,19 @@
-import NextLink from 'next/link'
+import { BioSection, BioYear } from '@/components/bio'
+import Layout from '@/components/layouts/article'
+import P from '@/components/paragraph'
+import { Section } from '@/components/section'
+import { AnimatedText, RevealText, TextLoop } from '@/components/text-effect'
+import { ChevronRightIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Button,
   Container,
   Heading,
-  useColorModeValue,
   Link,
-  Button
+  useColorModeValue
 } from '@chakra-ui/react'
-import Layout from '@/components/layouts/article'
 import Image from 'next/image'
-import { Section } from '@/components/section'
-import { BioSection, BioYear } from '@/components/bio'
-import P from '@/components/paragraph'
-import { ChevronRightIcon } from '@chakra-ui/icons'
-import { RevealText, AnimatedText, TextLoop } from '@/components/text-effect'
+import NextLink from 'next/link'
 
 export default function Home() {
   const about = "Hello, I'm a 3rd year IT Student in USTH - Hanoi, Vietnam!"
@@ -43,31 +43,33 @@ export default function Home() {
               Researcher / Developer)
             </p>
           </Box>
-          {/*Profile Image*/}
-          {/* <Box */}
-          {/*   flexShrink={0} */}
-          {/*   mt={{ base: 4, md: 0 }} */}
-          {/*   ml={{ md: 6 }} */}
-          {/*   textAlign="center" */}
-          {/* > */}
-          {/*   <Box */}
-          {/*     borderColor="whiteAlpha.800" */}
-          {/*     borderWidth={2} */}
-          {/*     borderStyle="solid" */}
-          {/*     w="100px" */}
-          {/*     h="100px" */}
-          {/*     display="inline-block" */}
-          {/*     borderRadius="full" */}
-          {/*     overflow="hidden" */}
-          {/*   > */}
-          {/*     <Image */}
-          {/*       src="/avatars/shiba2.png" */}
-          {/*       alt="Profile image" */}
-          {/*       width="100" */}
-          {/*       height="100" */}
-          {/*     /> */}
-          {/*   </Box> */}
-          {/* </Box> */}
+          {/* Profile Image */}
+          <Box
+            flexShrink={0}
+            mt={{ base: 4, md: 0 }}
+            ml={{ md: 6 }}
+            textAlign="center"
+          >
+            <Box
+              borderColor="whiteAlpha.800"
+              borderWidth={2}
+              borderStyle="solid"
+              w="100px"
+              h="100px"
+              display="inline-block"
+              borderRadius="full"
+              overflow="hidden"
+            >
+              <Image
+                src="/avatars/avatar.jpg"
+                alt="Profile image"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </Box>
+          </Box>
         </Box>
         <Section delay="0.3">
           <Heading as="h3" variant="section-title">
@@ -76,18 +78,22 @@ export default function Home() {
           <P>
             {/*May be add some animation for "Xin chao, Hello, Bonjour"*/}
             <TextLoop texts={['Hello', 'Xin Chào', 'Bonjour']} /> from a
-            student! My name is Dang. I&apos;m currently a third year student
-            studying Computer Science in{' '}
+            student! &#129299; My name is Dang. I&apos;m a graduated Computer
+            Science student from{' '}
             <Link target="_blank" href="https://usth.edu.vn/">
-              University of Science and Technology of Hanoi - USTH
+              University of Science and Technology Hanoi - USTH
             </Link>
             . I spend most of my time on researching and studying about AI and
-            Machine Learning stuffs. During my free time, I usually learn other
-            engineer skills such as DevOps and Distributed System or 3D
-            Modelling in Computer Graphics. I also learn French as my 3rd
-            language. My dream carrier path is to become a Machine Learning
-            Engineer. Imagine that, when everything is automated ... and you can
-            use &quot;math&quot; to solve most of the problems.
+            Machine Learning stuffs (mostly about image, and LLM). I also focus
+            on System Admin, DevOps and Computer Graphics when I cannot come up
+            with what to do next. I learn French as my 3rd language. Ussually,
+            30 minutes to one hour every morning to learn French is enough for
+            me. Becoming an AI Engineer is what I dream of when I started
+            studying in this field. Just think about your home in the future,
+            when you step into your house, the light, the music, ... turn on
+            automatically. With only your voice, your hand action, the house
+            operates normally while you are just sitting on sofa. Is it
+            convenient and time saving, isn&apos;t it ? &#128522;
           </P>
           <Box {...props} my={4}>
             <Button
@@ -122,7 +128,7 @@ export default function Home() {
             Internship as Backend Dev at FPT IS - Information System
           </BioSection>
           <BioSection>
-            <BioYear>Now</BioYear>
+            <BioYear>2024</BioYear>
             Internship as Researcher at ICT Lab - USTH
           </BioSection>
         </Section>
@@ -133,8 +139,8 @@ export default function Home() {
             <AnimatedText text="I ♥" />
           </Heading>
           <P>
-            Music, Piano (but haven&apos;t known how to play yet :(( ), Reading,
-            Machine Learning, Computer Vision, 3D Modelling.
+            Music, Piano (but haven&apos;t known how to play yet &#128533; ),
+            Reading, Computer Vision.
           </P>
         </Section>
 
