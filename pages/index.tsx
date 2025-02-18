@@ -16,7 +16,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 
 export default function Home() {
-  const about = "Hello, I'm a 3rd year IT Student in USTH - Hanoi, Vietnam!"
+  const about = 'Hello, I\'m a simple "IT" guy based in Hanoi, Vietnam!'
   const props = {
     align: 'center'
   }
@@ -38,9 +38,10 @@ export default function Home() {
             <Heading as="h2">
               <AnimatedText text="Doan Dinh Dang" once={false} />
             </Heading>
+            <p>(Đoàn Đình Đăng)</p>
             <p>
-              Bachelor in Information and Comunication Technology ( Student /
-              Researcher / Developer)
+              A graduated Computer Science student, System Administrator,
+              Engineer, and Researcher.
             </p>
           </Box>
           {/* Profile Image */}
@@ -76,7 +77,6 @@ export default function Home() {
             <AnimatedText text="Who am I" />
           </Heading>
           <P>
-            {/*May be add some animation for "Xin chao, Hello, Bonjour"*/}
             <TextLoop texts={['Hello', 'Xin Chào', 'Bonjour']} /> from a
             student! &#129299; My name is Dang. I&apos;m a graduated Computer
             Science student from{' '}
@@ -85,15 +85,16 @@ export default function Home() {
             </Link>
             . I spend most of my time on researching and studying about AI and
             Machine Learning stuffs (mostly about image, and LLM). I also focus
-            on System Admin, DevOps and Computer Graphics when I cannot come up
-            with what to do next. I learn French as my 3rd language. Ussually,
-            30 minutes to one hour every morning to learn French is enough for
-            me. Becoming an AI Engineer is what I dream of when I started
-            studying in this field. Just think about your home in the future,
-            when you step into your house, the light, the music, ... turn on
-            automatically. With only your voice, your hand action, the house
-            operates normally while you are just sitting on sofa. Is it
-            convenient and time saving, isn&apos;t it ? &#128522;
+            on DevOps, System Admin as the second carrier path. I spend 30
+            minutes to 1 hour on learning French as my 3rd language in every
+            morning. In my free time, I sometimes learn to 3D modelling in
+            Computer Graphics. Becoming an AI Engineer is what I dream of when I
+            started studying in this field. Just think about our future home,
+            when we step into our house, the light, the music, etc... turn on
+            automatically. With only our voice, our hand action, the house
+            operates like magic while we are just sitting on sofa. Is it really
+            convenient, time-saving, and &quot;funny&quot;, isn&apos;t it ?
+            &#128522;
           </P>
           <Box {...props} my={4}>
             <Button
@@ -129,7 +130,11 @@ export default function Home() {
           </BioSection>
           <BioSection>
             <BioYear>2024</BioYear>
-            Internship as Researcher at ICT Lab - USTH
+            Internship as Researcher at ICT Lab - USTH, Graduated from USTH
+          </BioSection>
+          <BioSection>
+            <BioYear>Now</BioYear>
+            Expert System Administrator at Mobifone Corporation
           </BioSection>
         </Section>
 

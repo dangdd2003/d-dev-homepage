@@ -66,13 +66,15 @@ export default function More() {
                   Computer science stuffs: Python (mostly), and ... Matlab
                   (rarely, only for advanced calculation)
                 </ListItem>
-                <ListItem>Computer Graphics, Algorithm: C/C++</ListItem>
+                <ListItem>Computer Graphics, Algorithms: C/C++</ListItem>
                 <ListItem>
                   WebApp: Java, Typescript (not JavaScript, sorry, i don&apos;t
-                  like NO typed language)
+                  like NON typed language!!!)
                 </ListItem>
                 <ListItem>Database/SQL: MySQL/MariaDB, PostGresSQL</ListItem>
-                <ListItem>Scripting with bash and zsh</ListItem>
+                <ListItem>
+                  Scripting with bash and zsh, advanced system configuration
+                </ListItem>
               </UnorderedList>
             </Box>
             <P>
@@ -86,18 +88,13 @@ export default function More() {
                   OpenCV
                 </ListItem>
                 <ListItem>
-                  WebApp Development: SpringBoot, Quarkus, React Native,
-                  Next.Js, Three.Js
+                  Development/Engineer: SpringBoot, Quarkus, React Native,
+                  Next.Js, Three.Js, Hibernate ORM, JPA
                 </ListItem>
                 <ListItem>
-                  Query Language: Hibernate ORM, JPA, Native SQL
+                  Deployment/Adminstration: Docker, Git, Github Action, Travis
+                  CI, Jenkins, Nginx, Traefik, Prometheus, Grafana, Networking
                 </ListItem>
-                <ListItem>
-                  Deployment/Version Control: Docker (advanced, except for
-                  Docker Swarm, still learning &#128577; ), Git, Github Action,
-                  Travis CI.
-                </ListItem>
-                <ListItem>Reverse Proxy: Nginx, Traefik</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -109,12 +106,12 @@ export default function More() {
               I use Linux as my main Operating System for most of my work. I
               started using Fedora when I was in high school. And now, I use
               Arch Linux &quot;by the way&quot;. I could say, I am a
-              &apos;sub-advanced&apos; linux user lol! &#128541;
+              &apos;sub-advanced&apos; Linux user! &#128541;
             </P>
             <P>
-              I use Windows only for ... playing games ..... And one more thing
-              ... MS Visual Studio only supports Windows due to its operation
-              based on DDL so ... &#129301;
+              I use Windows only for ... playing games ... and ... MS Visual
+              Studio, which only supports Windows due to its operation based on
+              DDL so ... &#129301;
             </P>
           </SubSection>
           <SubSection delay="0.7">
@@ -123,10 +120,8 @@ export default function More() {
             </Heading>
             <Box ml={3} my={3}>
               <UnorderedList>
-                <ListItem>
-                  JWT, REST Api, Google Cloud Platform, MS Azure
-                </ListItem>
-                <ListItem>Microservice, Networking</ListItem>
+                <ListItem>JWT, REST Api, GCP, AWS, MS Azure</ListItem>
+                <ListItem>Microservice, Distributed system</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -137,10 +132,10 @@ export default function More() {
           </Heading>
           <P>
             I am not that crazy for only studying even in the free time. I play
-            some animated games such as Genshin Impact or Honkai Star Rail (just
-            say wjbu stuffs lol). I usually read books, mangas, or daily tech
-            newspapers whenever the phone is on my hand. I also played FPS games
-            CS2 (Counter Strike 2) on Steam and Valorant (but very rarely right
+            some &quot;wjbu&quot; games such as Genshin Impact or Honkai Star
+            Rail. I usually read books, mangas, or daily tech newspapers
+            whenever the phone is on my hand. I also played FPS games CS2
+            (Counter Strike 2) on Steam and Valorant (but very rarely right
             now). Terarria and Oxygen Not Included are 2 adventure, survival
             &quot;offline&quot; games that I really spent time on playing. Let
             make friend and we can play together!
@@ -148,14 +143,14 @@ export default function More() {
           <Box {...props} my={4}>
             <Button
               as={Link}
-              href="mailto:d-gaming@dangdd.me"
+              href="mailto:3dbrogaming2003@gmail.com"
               scroll={false}
               leftIcon={<SiGmail />}
               colorScheme="teal"
               width={300}
               target="_blank"
             >
-              d-gaming@dangdd.me
+              3dbrogaming2003@gmail.com
             </Button>
           </Box>
         </Section>
