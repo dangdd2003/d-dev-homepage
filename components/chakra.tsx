@@ -12,9 +12,10 @@ export default function Chakra({
   cookies: string
   children?: React.ReactNode
 }) {
-  const colorModeManager = cookies
-    ? cookieStorageManagerSSR(cookies)
-    : localStorageManager
+  const colorModeManager =
+    typeof cookies === 'string'
+      ? cookieStorageManagerSSR(cookies)
+      : localStorageManager
 
   return (
     <ChakraProvider theme={theme} colorModeManager={colorModeManager}>

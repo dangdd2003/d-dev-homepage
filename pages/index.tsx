@@ -134,7 +134,7 @@ export default function Home() {
           </BioSection>
           <BioSection>
             <BioYear>Now</BioYear>
-            Expert System Administrator at Mobifone Corporation
+            System Administrator at Mobifone Corporation
           </BioSection>
         </Section>
 

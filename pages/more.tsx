@@ -40,8 +40,8 @@ export default function More() {
           </P>
           <P>
             I started programming when i was in high school. I learned C++ as my
-            first programming language. At that time, i only learned how to
-            solve some basic algorithms. Not like right now, not only the
+            first programming language. Back in the day, i only learned how to
+            solve some basic algorithms other than right now, not only the
             solution, but also the optimization - definitely the hardest part :)
           </P>
         </Section>
@@ -54,19 +54,17 @@ export default function More() {
               Programming
             </Heading>
             <P>
-              My study focuses on Mathematical problems in AI, Machine Learning,
+              My study focuses on Mathematical problems, mainly in AI, Machine Learning,
               and Signal/Image Processing stuffs. I also learn and read lots of
-              document about computer system, CI/CD workflows, system
-              optimization. Sometimes, i do some math for 3D modelling or
-              animated visualization. It is really fun to do that.
+              document about AI automation, computer system, CI/CD workflows, system
+              optimization. Sometimes, i do math for 3D modelling or
+              animated visualization (just for fun, btw).
             </P>
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  Computer science stuffs: Python (mostly), and ... Matlab
-                  (rarely, only for advanced calculation)
+                  Main programming languages: Python (mostly), MATLAB, C/C++ (computer graphics and algorithms).
                 </ListItem>
-                <ListItem>Computer Graphics, Algorithms: C/C++</ListItem>
                 <ListItem>
                   WebApp: Java, Typescript (not JavaScript, sorry, i don&apos;t
                   like NON typed language!!!)
@@ -93,7 +91,7 @@ export default function More() {
                 </ListItem>
                 <ListItem>
                   Deployment/Adminstration: Docker, Git, Github Action, Travis
-                  CI, Jenkins, Nginx, Traefik, Prometheus, Grafana, Networking
+                  CI, Jenkins, Nginx, Traefik, Prometheus, Grafana
                 </ListItem>
               </UnorderedList>
             </Box>
@@ -105,8 +103,9 @@ export default function More() {
             <P>
               I use Linux as my main Operating System for most of my work. I
               started using Fedora when I was in high school. And now, I use
-              Arch Linux &quot;by the way&quot;. I could say, I am a
-              &apos;sub-advanced&apos; Linux user! &#128541;
+              Arch Linux &quot;by the way&quot; and some popular RedHat distros
+              (RHEL, Oracle, CentOS) at work. For homelab, self server,
+              deffinitely i choose the most lightweight and stable distro, Debian.
             </P>
             <P>
               I use Windows only for ... playing games ... and ... MS Visual
@@ -120,8 +119,8 @@ export default function More() {
             </Heading>
             <Box ml={3} my={3}>
               <UnorderedList>
-                <ListItem>JWT, REST Api, GCP, AWS, MS Azure</ListItem>
-                <ListItem>Microservice, Distributed system</ListItem>
+                <ListItem>JWT, REST Api, Cloud platforms (AWS, GCP, MS Azure)</ListItem>
+                <ListItem>Microservice, Distributed system, Networking</ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -135,10 +134,11 @@ export default function More() {
             some &quot;wjbu&quot; games such as Genshin Impact or Honkai Star
             Rail. I usually read books, mangas, or daily tech newspapers
             whenever the phone is on my hand. I also played FPS games CS2
-            (Counter Strike 2) on Steam and Valorant (but very rarely right
-            now). Terarria and Oxygen Not Included are 2 adventure, survival
-            &quot;offline&quot; games that I really spent time on playing. Let
-            make friend and we can play together!
+            on Steam and Valorant (but very rarely right now). Terarria and
+            Oxygen Not Included are two &quot;offline&quot; games that I really
+            spent time on playing. I really recommend play these two survival
+            and advanture games. Connect with me for gaming stuffs via the
+            the button below.
           </P>
           <Box {...props} my={4}>
             <Button
@@ -160,7 +160,7 @@ export default function More() {
           </Heading>
           <Paragraph>
             Why The Earth? ... It is just where we are leaving:D. I just came up
-            with the idea of adding the earth to the page when trying to
+            with the idea of adding the earth 3D model to the page when trying to
             decorate it.
           </Paragraph>
         </Section>
