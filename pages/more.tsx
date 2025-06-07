@@ -54,16 +54,17 @@ export default function More() {
               Programming
             </Heading>
             <P>
-              My study focuses on Mathematical problems, mainly in AI, Machine Learning,
-              and Signal/Image Processing stuffs. I also learn and read lots of
-              document about AI automation, computer system, CI/CD workflows, system
-              optimization. Sometimes, i do math for 3D modelling or
-              animated visualization (just for fun, btw).
+              My study focuses on Mathematical problems, mainly in AI, Machine
+              Learning, and Signal/Image Processing stuffs. I also learn and
+              read lots of document about AI automation, computer system, CI/CD
+              workflows, system optimization. Sometimes, i do math for 3D
+              modelling or animated visualization (just for fun, btw).
             </P>
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  Main programming languages: Python (mostly), MATLAB, C/C++ (computer graphics and algorithms).
+                  Main programming languages: Python (mostly), MATLAB, C/C++
+                  (computer graphics and algorithms).
                 </ListItem>
                 <ListItem>
                   WebApp: Java, Typescript (not JavaScript, sorry, i don&apos;t
@@ -105,7 +106,8 @@ export default function More() {
               started using Fedora when I was in high school. And now, I use
               Arch Linux &quot;by the way&quot; and some popular RedHat distros
               (RHEL, Oracle, CentOS) at work. For homelab, self server,
-              deffinitely i choose the most lightweight and stable distro, Debian.
+              definitely i choose the most lightweight and stable distro,
+              Debian.
             </P>
             <P>
               I use Windows only for ... playing games ... and ... MS Visual
@@ -119,8 +121,12 @@ export default function More() {
             </Heading>
             <Box ml={3} my={3}>
               <UnorderedList>
-                <ListItem>JWT, REST Api, Cloud platforms (AWS, GCP, MS Azure)</ListItem>
-                <ListItem>Microservice, Distributed system, Networking</ListItem>
+                <ListItem>
+                  JWT, REST Api, Cloud platforms (AWS, GCP, MS Azure)
+                </ListItem>
+                <ListItem>
+                  Microservice, Distributed system, Networking
+                </ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
@@ -133,12 +139,12 @@ export default function More() {
             I am not that crazy for only studying even in the free time. I play
             some &quot;wjbu&quot; games such as Genshin Impact or Honkai Star
             Rail. I usually read books, mangas, or daily tech newspapers
-            whenever the phone is on my hand. I also played FPS games CS2
-            on Steam and Valorant (but very rarely right now). Terarria and
-            Oxygen Not Included are two &quot;offline&quot; games that I really
-            spent time on playing. I really recommend play these two survival
-            and advanture games. Connect with me for gaming stuffs via the
-            the button below.
+            whenever the phone is on my hand. I also played FPS games CS2 on
+            Steam and Valorant (but very rarely right now). Terarria and Oxygen
+            Not Included are two &quot;offline&quot; games that I really spent
+            time on playing. I really recommend play these two survival and
+            advanture games. Connect with me for gaming stuffs via the the
+            button below.
           </P>
           <Box {...props} my={4}>
             <Button
@@ -160,8 +166,8 @@ export default function More() {
           </Heading>
           <Paragraph>
             Why The Earth? ... It is just where we are leaving:D. I just came up
-            with the idea of adding the earth 3D model to the page when trying to
-            decorate it.
+            with the idea of adding the earth 3D model to the page when trying
+            to decorate it.
           </Paragraph>
         </Section>
       </Container>
