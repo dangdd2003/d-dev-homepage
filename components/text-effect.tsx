@@ -73,14 +73,16 @@ export function TextLoop({ texts }: { texts: string[] }) {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       let next = index + 1
       if (next === texts.length) {
         next = 0
       }
       setIndex(next)
     }, 3 * 1000)
-  })
+
+    return () => clearTimeout(timeout)
+  }, [index, texts.length])
 
   return (
     <AnimatePresence mode="wait" initial={false}>
