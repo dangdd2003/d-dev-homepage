@@ -1,4 +1,7 @@
-import * as THREE from 'three'
+import { Vector3, BufferGeometry, Float32BufferAttribute, Points, PointsMaterial, TextureLoader, type Texture } from 'three'
+
+// Cache texture to avoid reloading on every call
+let starTexture: Texture | null = null
 
 export default function getStarfield({ numStars = 500 } = {}) {
   function randomSpherePoint() {
@@ -7,36 +10,32 @@ export default function getStarfield({ numStars = 500 } = {}) {
     const v = Math.random()
     const theta = 2 * Math.PI * u
     const phi = Math.acos(2 * v - 1)
-    let x = radius * Math.sin(phi) * Math.cos(theta)
-    let y = radius * Math.sin(phi) * Math.sin(theta)
-    let z = radius * Math.cos(phi)
+    const x = radius * Math.sin(phi) * Math.cos(theta)
+    const y = radius * Math.sin(phi) * Math.sin(theta)
+    const z = radius * Math.cos(phi)
 
     return {
-      pos: new THREE.Vector3(x, y, z),
+      pos: new Vector3(x, y, z),
       hue: 0.6,
       minDist: radius
     }
   }
-  const verts = []
-  const colors = []
-  const positions = []
-  let col
+  const verts: number[] = []
   for (let i = 0; i < numStars; i += 1) {
-    let p = randomSpherePoint()
-    const { pos, hue } = p
-    positions.push(p)
-    col = new THREE.Color().setHSL(hue, 0.2, Math.random())
+    const p = randomSpherePoint()
+    const { pos } = p
     verts.push(pos.x, pos.y, pos.z)
-    colors.push(col.r, col.g, col.b)
   }
-  const geo = new THREE.BufferGeometry()
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3))
-  geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3))
-  const mat = new THREE.PointsMaterial({
+  const geo = new BufferGeometry()
+  geo.setAttribute('position', new Float32BufferAttribute(verts, 3))
+  // Cache texture on first call, reuse thereafter
+  if (!starTexture) {
+    starTexture = new TextureLoader().load('/earth_texture/circle.png')
+  }
+  const mat = new PointsMaterial({
     size: 0.5,
-    vertexColors: false,
-    map: new THREE.TextureLoader().load('/earth_texture/circle.png')
+    map: starTexture
   })
-  const points = new THREE.Points(geo, mat)
+  const points = new Points(geo, mat)
   return points
 }
