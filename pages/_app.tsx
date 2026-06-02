@@ -8,7 +8,7 @@ export default function Website({ Component, pageProps, router }: AppProps) {
   return (
     <Chakra cookies={pageProps.cookies}>
       <Fonts />
-      <Layout router={router}>
+      <Layout router={router} baseUrl={pageProps.baseUrl}>
         <AnimatePresence
           mode="wait"
           initial={true}

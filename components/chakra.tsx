@@ -25,9 +25,16 @@ export default function Chakra({
 }
 
 export function getServerSideProps({ req }: { req: any }) {
+  const host =
+    (req.headers['x-forwarded-host'] as string) ||
+    (req.headers.host as string) ||
+    'dangdd.tech'
+  const protocol =
+    (req.headers['x-forwarded-proto'] as string) || 'https'
   return {
     props: {
-      cookies: req.headers.cookie ?? ''
+      cookies: req.headers.cookie ?? '',
+      baseUrl: `${protocol}://${host}`
     }
   }
 }

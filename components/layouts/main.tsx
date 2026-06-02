@@ -13,11 +13,17 @@ const Earth = dynamic(() => import('@/components/earth'), {
 
 export default function Main({
   children,
-  router
+  router,
+  baseUrl = 'https://dangdd.tech'
 }: {
   children?: React.ReactNode
   router: NextRouter
+  baseUrl?: string
 }) {
+  const pageUrl = `${baseUrl}${router.asPath}`
+  const imageUrl = `${baseUrl}/homepage.png`
+  const twitterDomain = baseUrl.replace(/^https?:\/\//, '').split(':')[0]
+
   return (
     <Box as="main" pb={8}>
       <Head>
@@ -27,25 +33,19 @@ export default function Main({
         <meta name="author" content="Đoàn Đình Đăng" />
         <meta name="author" content="d-dev" />
 
-        <meta property="og:url" content="https://www.dangdd.me" />
+        <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Doan Dinh Dang | Homepage" />
         <meta property="og:description" content="Dang's Homepage" />
-        <meta
-          property="og:image"
-          content="https://www.dangdd.me/homepage.png"
-        />
+        <meta property="og:image" content={imageUrl} />
         <meta property="og:site_name" content="Doan Dinh Dang" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="dangdd.me" />
-        <meta property="twitter:url" content="https://www.dangdd.me" />
+        <meta property="twitter:domain" content={twitterDomain} />
+        <meta property="twitter:url" content={pageUrl} />
         <meta name="twitter:title" content="Doan Dinh Dang | Homepage" />
         <meta name="twitter:description" content="Dang's Homepage" />
-        <meta
-          name="twitter:image"
-          content="https://www.dangdd.me/homepage.png"
-        />
+        <meta name="twitter:image" content={imageUrl} />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
