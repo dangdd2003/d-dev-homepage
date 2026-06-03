@@ -1,5 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import * as THREE from 'three'
+import {
+  WebGLRenderer,
+  PerspectiveCamera,
+  Vector3,
+  Scene,
+  SRGBColorSpace
+} from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { EarthSpinner, EarthContainer } from '@/components/earth-loader'
 import createEarth from '@/lib/model'
@@ -11,7 +17,7 @@ function easeOutCirc(x: number) {
 export default function Earth() {
   const refContainer = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
-  const refRenderer = useRef<THREE.WebGLRenderer>()
+  const refRenderer = useRef<WebGLRenderer>()
 
   const handleWindowResize = useCallback(() => {
     const { current: renderer } = refRenderer
@@ -29,18 +35,18 @@ export default function Earth() {
       const scW = container.clientWidth
       const scH = container.clientHeight
 
-      const renderer = new THREE.WebGLRenderer({
+      const renderer = new WebGLRenderer({
         antialias: true,
         alpha: true
       })
       renderer.setPixelRatio(window.devicePixelRatio)
       renderer.setSize(scW, scH)
-      renderer.outputColorSpace = THREE.SRGBColorSpace
+      renderer.outputColorSpace = SRGBColorSpace
 
-      const target = new THREE.Vector3(0, 0, 0)
-      const initialCameraPosition = new THREE.Vector3(10, 0, 0)
+      const target = new Vector3(0, 0, 0)
+      const initialCameraPosition = new Vector3(10, 0, 0)
 
-      const camera = new THREE.PerspectiveCamera(20, scW / scH, 0.1, 1000)
+      const camera = new PerspectiveCamera(20, scW / scH, 0.1, 1000)
       camera.position.z = 5
       camera.position.copy(initialCameraPosition)
       camera.lookAt(target)
@@ -53,7 +59,7 @@ export default function Earth() {
       // controls.autoRotate = true
       controls.target = target
 
-      const scene = new THREE.Scene()
+      const scene = new Scene()
 
       // finish creating the Earth before animation
       let req: number = 0
