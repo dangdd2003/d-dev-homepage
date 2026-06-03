@@ -1,6 +1,6 @@
 # D-Dev's Homepage
 
-https://www.dangdd.me
+<https://www.dangdd.dev>
 
 ## Image
 
@@ -21,11 +21,15 @@ https://www.dangdd.me
 
 ## CI/CD Workflow
 
-[Self deployment](./Self_deployment.md). Use github action for automatically building image.
-
-- [Docker](https://www.docker.com) - Containerization tool.
-- [Traefik](https://traefik.io/traefik) - The cloud native application proxy used for reverse proxy, load balancer, tls connection (https).
-- [Watchtower](https://containrrr.dev/watchtower) - Automating Docker container base image updates.
+- [Self deployment](./Self_deployment.md) - Use github action for automatically building image.
+  - [Kubernetes](https://kubernetes.io) - Container orchestration system for automating application deployment, scaling, and management.
+  - [MetalLB](https://metallb.universe.tf) - Load-balancer for Kubernetes.
+  - [Cloudflare](https://www.cloudflare.com) - Proxy, CDN and DNS provider for domain management and security.
+  - [Docker](https://www.docker.com) - Containerization tool.
+  - [Traefik](https://traefik.io/traefik) - The cloud native application proxy used for reverse proxy, load balancer, tls connection (https).
+  - [Watchtower](https://containrrr.dev/watchtower) - Automating Docker container base image updates.
+- [Vercel](https://vercel.com) - Cloud platform for static sites and serverless functions, used for hosting the website.
+- [Heroku](https://www.heroku.com) - Cloud platform for hosting applications, used for hosting the backend API.
 
 ## Credits
 
