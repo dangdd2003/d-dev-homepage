@@ -1,4 +1,12 @@
-import { Vector3, BufferGeometry, Float32BufferAttribute, Points, PointsMaterial, TextureLoader, type Texture } from 'three'
+import {
+  Vector3,
+  BufferGeometry,
+  Float32BufferAttribute,
+  Points,
+  PointsMaterial,
+  TextureLoader,
+  type Texture
+} from 'three'
 
 // Cache texture to avoid reloading on every call
 let starTexture: Texture | null = null
@@ -20,11 +28,14 @@ export default function getStarfield({ numStars = 500 } = {}) {
       minDist: radius
     }
   }
-  const verts: number[] = []
+  const verts = new Float32Array(numStars * 3)
   for (let i = 0; i < numStars; i += 1) {
     const p = randomSpherePoint()
     const { pos } = p
-    verts.push(pos.x, pos.y, pos.z)
+    const i3 = i * 3
+    verts[i3] = pos.x
+    verts[i3 + 1] = pos.y
+    verts[i3 + 2] = pos.z
   }
   const geo = new BufferGeometry()
   geo.setAttribute('position', new Float32BufferAttribute(verts, 3))
