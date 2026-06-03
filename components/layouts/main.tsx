@@ -14,7 +14,7 @@ const Earth = dynamic(() => import('@/components/earth'), {
 export default function Main({
   children,
   router,
-  baseUrl = 'https://dangdd.tech'
+  baseUrl = 'https://www.dangdd.dev'
 }: {
   children?: React.ReactNode
   router: NextRouter
