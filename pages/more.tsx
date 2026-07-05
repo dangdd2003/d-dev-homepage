@@ -63,41 +63,65 @@ export default function More() {
             <Box ml={3} my={3}>
               <UnorderedList>
                 <ListItem>
-                  Main programming languages: Python (mostly), MATLAB, C/C++
-                  (computer graphics and algorithms).
+                  Languages: C/C++, Python, Java, Typescript, Bash.
                 </ListItem>
                 <ListItem>
-                  WebApp: Java, Typescript (not JavaScript, sorry, i don&apos;t
-                  like NON typed language!!!)
-                </ListItem>
-                <ListItem>Database/SQL: MySQL/MariaDB, PostGresSQL</ListItem>
-                <ListItem>
-                  Scripting with bash and zsh, advanced system configuration
-                </ListItem>
-              </UnorderedList>
-            </Box>
-            <P>
-              I also have err... &quot;just enough to use&quot; experience with
-              some frameworks, libraries, tools.
-            </P>
-            <Box ml={3} my={3}>
-              <UnorderedList>
-                <ListItem>
-                  Computer Science: Scikit Learn, Tensor Flow, Keras, Pytorch,
-                  OpenCV
+                  Databases: MySQL/MariaDB, MongoDB, ChromaDB.
                 </ListItem>
                 <ListItem>
-                  Development/Engineer: SpringBoot, Quarkus, React Native,
-                  Next.Js, Three.Js, Hibernate ORM, JPA
+                  Machine Learning &amp; AI: Scikit-Learn, PyTorch, TensorFlow,
+                  Keras, OpenCV, Transformers, Diffusers, LangChain.
                 </ListItem>
                 <ListItem>
-                  Deployment/Adminstration: Docker, Git, Github Action, Travis
-                  CI, Jenkins, Nginx, Traefik, Prometheus, Grafana
+                  Backend &amp; Web: Spring Boot, Quarkus, Maven, React, REST,
+                  gRPC.
                 </ListItem>
               </UnorderedList>
             </Box>
           </SubSection>
           <SubSection delay="0.5">
+            <Heading as="h4" fontSize={16} my={2}>
+              Tech Stacks
+            </Heading>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Development &amp; Operations: Git, Docker, Kubernetes,
+                  Datadog.
+                </ListItem>
+                <ListItem>Data &amp; Storage: Supabase, Qdrant.</ListItem>
+                <ListItem>Cloud Platforms: AWS, GCP, MS Azure.</ListItem>
+                <ListItem>
+                  Virtualization: RHEV, OpenStack, VMware ESXi.
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.7">
+            <Heading as="h4" fontSize={16} my={2}>
+              Fundamental Knowledge
+            </Heading>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Computer Science: Algorithms, OOP, Kernel &amp; System,
+                  Networking.
+                </ListItem>
+                <ListItem>
+                  AI &amp; Data: Machine Learning, Deep Learning, Feature
+                  Learning/Engineering, RAG, OCR.
+                </ListItem>
+                <ListItem>
+                  Signal Processing: Digital Signal/Image Processing.
+                </ListItem>
+                <ListItem>
+                  Engineering Practices: CI/CD Workflows, Vector
+                  Database/Embedding/Search.
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.9">
             <Heading as="h4" fontSize={16} my={2}>
               Operating System
             </Heading>
@@ -114,21 +138,6 @@ export default function More() {
               Studio, which only supports Windows due to its operation based on
               DDL so ... &#129301;
             </P>
-          </SubSection>
-          <SubSection delay="0.7">
-            <Heading as="h4" fontSize={16} my={2}>
-              Others
-            </Heading>
-            <Box ml={3} my={3}>
-              <UnorderedList>
-                <ListItem>
-                  JWT, REST Api, Cloud platforms (AWS, GCP, MS Azure)
-                </ListItem>
-                <ListItem>
-                  Microservice, Distributed system, Networking
-                </ListItem>
-              </UnorderedList>
-            </Box>
           </SubSection>
         </Section>
         <Section delay="0.7">
