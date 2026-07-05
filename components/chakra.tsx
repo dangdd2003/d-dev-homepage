@@ -3,6 +3,7 @@ import {
   cookieStorageManagerSSR,
   localStorageManager
 } from '@chakra-ui/react'
+import type { GetServerSidePropsContext } from 'next'
 import theme from '@/lib/theme'
 
 export default function Chakra({
@@ -26,7 +27,7 @@ export default function Chakra({
 
 const ALLOWED_HOSTS = ['dangdd.tech', 'dangdd.dev', 'ddangw.me']
 
-export function getServerSideProps({ req }: { req: any }) {
+export function getServerSideProps({ req }: GetServerSidePropsContext) {
   const rawHost =
     (req.headers['x-forwarded-host'] as string) ||
     (req.headers.host as string) ||

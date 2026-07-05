@@ -1,4 +1,6 @@
-export default function LetterDIcon(props: any) {
+import type { SVGProps } from 'react'
+
+export default function LetterDIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       height={20}

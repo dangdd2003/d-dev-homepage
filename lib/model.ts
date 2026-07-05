@@ -21,7 +21,12 @@ const loader = new TextureLoader()
 function loadTexture(path: string, promises: Promise<Texture>[]) {
   if (!textureCache[path]) {
     const promise = new Promise<Texture>((resolve, reject) => {
-      textureCache[path] = loader.load(path, resolve as any, undefined, reject)
+      textureCache[path] = loader.load(
+        path,
+        texture => resolve(texture),
+        undefined,
+        reject
+      )
     })
     promises.push(promise)
   }
