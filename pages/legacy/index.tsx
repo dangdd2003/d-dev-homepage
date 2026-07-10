@@ -9,8 +9,7 @@ import {
   Button,
   Container,
   Heading,
-  Link,
-  useColorModeValue
+  Link
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -25,7 +24,7 @@ export default function Home() {
       <Container>
         <Box
           borderRadius="lg"
-          bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
+          bg="glass-bg"
           p={3}
           mb={6}
           textAlign="center"
@@ -99,12 +98,11 @@ export default function Home() {
           <Box {...props} my={4}>
             <Button
               as={NextLink}
-              href="/more"
+              href="/legacy/more"
               scroll={false}
               rightIcon={<ChevronRightIcon />}
               colorScheme="teal"
             >
-              {/* My Portfolio */}
               More About Me
             </Button>
           </Box>
@@ -151,13 +149,12 @@ export default function Home() {
 
         <Section delay="0.9">
           <Heading as="h3" variant="section-title">
-            {/* Connect to me */}
             <AnimatedText text="Connect to me" />
           </Heading>
           <Box {...props} my={4}>
             <Button
               as={NextLink}
-              href="/connect"
+              href="/legacy/connect"
               scroll={false}
               rightIcon={<ChevronRightIcon />}
               colorScheme="teal"
@@ -171,4 +168,4 @@ export default function Home() {
   )
 }
 
-export { getServerSideProps } from '@/components/chakra'
+export { getServerSideProps } from '@/lib/legacy-props'

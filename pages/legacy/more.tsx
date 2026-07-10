@@ -1,0 +1,187 @@
+import Layout from '@/components/layouts/article'
+import P, { Paragraph } from '@/components/paragraph'
+import { Section, SubSection } from '@/components/section'
+import { AnimatedText } from '@/components/text-effect'
+import {
+  Box,
+  Button,
+  Container,
+  Heading,
+  ListItem,
+  UnorderedList
+} from '@chakra-ui/react'
+import Link from 'next/link'
+import { SiGmail } from 'react-icons/si'
+
+export default function More() {
+  const props = {
+    align: 'center'
+  }
+  return (
+    <Layout title="More">
+      <Container>
+        <Box display={{ md: 'flex' }}>
+          <Box flexGrow={1}>
+            <Heading as="h2" variant="page-title">
+              More about me
+            </Heading>
+          </Box>
+        </Box>
+        <Section delay="0.3">
+          <Heading as="h3" variant="section-title">
+            <AnimatedText text="Why I choose Computer Science" />
+          </Heading>
+          <P>
+            Working with number is my cup of tea. I really like natural sciences
+            especially Math, Physics, and Chemistry ( But not that good to get
+            any achievements &#128579;). It is just very interesting and
+            enjoyable to answer the question &quot;why it is?&quot;. I really
+            like to discuss with others about common natural phenomena.
+          </P>
+          <P>
+            I started programming when i was in high school. I learned C++ as my
+            first programming language. Back in the day, i only learned how to
+            solve some basic algorithms other than right now, not only the
+            solution, but also the optimization - definitely the hardest part :)
+          </P>
+        </Section>
+        <Section delay="0.5">
+          <Heading as="h3" variant="section-title">
+            <AnimatedText text="My skill" />
+          </Heading>
+          <SubSection delay="0.3">
+            <Heading as="h4" fontSize={16} my={2}>
+              Programming
+            </Heading>
+            <P>
+              My study focuses on Mathematical problems, mainly in AI, Machine
+              Learning, and Signal/Image Processing stuffs. I also learn and
+              read lots of document about AI automation, computer system, CI/CD
+              workflows, system optimization. Sometimes, i do math for 3D
+              modelling or animated visualization (just for fun, btw).
+            </P>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Languages: C/C++, Python, Java, Typescript, Bash.
+                </ListItem>
+                <ListItem>
+                  Databases: MySQL/MariaDB, MongoDB, ChromaDB.
+                </ListItem>
+                <ListItem>
+                  Machine Learning &amp; AI: Scikit-Learn, PyTorch, TensorFlow,
+                  Keras, OpenCV, Transformers, Diffusers, LangChain.
+                </ListItem>
+                <ListItem>
+                  Backend &amp; Web: Spring Boot, Quarkus, Maven, React, REST,
+                  gRPC.
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.5">
+            <Heading as="h4" fontSize={16} my={2}>
+              Tech Stacks
+            </Heading>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Development &amp; Operations: Git, Docker, Kubernetes,
+                  Datadog.
+                </ListItem>
+                <ListItem>Data &amp; Storage: Supabase, Qdrant.</ListItem>
+                <ListItem>Cloud Platforms: AWS, GCP, MS Azure.</ListItem>
+                <ListItem>
+                  Virtualization: RHEV, OpenStack, VMware ESXi.
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.7">
+            <Heading as="h4" fontSize={16} my={2}>
+              Fundamental Knowledge
+            </Heading>
+            <Box ml={3} my={3}>
+              <UnorderedList>
+                <ListItem>
+                  Computer Science: Algorithms, OOP, Kernel &amp; System,
+                  Networking.
+                </ListItem>
+                <ListItem>
+                  AI &amp; Data: Machine Learning, Deep Learning, Feature
+                  Learning/Engineering, RAG, OCR.
+                </ListItem>
+                <ListItem>
+                  Signal Processing: Digital Signal/Image Processing.
+                </ListItem>
+                <ListItem>
+                  Engineering Practices: CI/CD Workflows, Vector
+                  Database/Embedding/Search.
+                </ListItem>
+              </UnorderedList>
+            </Box>
+          </SubSection>
+          <SubSection delay="0.9">
+            <Heading as="h4" fontSize={16} my={2}>
+              Operating System
+            </Heading>
+            <P>
+              I use Linux as my main Operating System for most of my work. I
+              started using Fedora when I was in high school. And now, I use
+              Arch Linux &quot;by the way&quot; and some popular RedHat distros
+              (RHEL, Oracle, CentOS) at work. For homelab, self server,
+              definitely i choose the most lightweight and stable distro,
+              Debian.
+            </P>
+            <P>
+              I use Windows only for ... playing games ... and ... MS Visual
+              Studio, which only supports Windows due to its operation based on
+              DDL so ... &#129301;
+            </P>
+          </SubSection>
+        </Section>
+        <Section delay="0.7">
+          <Heading as="h3" variant="section-title">
+            <AnimatedText text="Free time only for studying???" />
+          </Heading>
+          <P>
+            I am not that crazy for only studying even in the free time. I play
+            some &quot;wjbu&quot; games such as Genshin Impact or Honkai Star
+            Rail. I usually read books, mangas, or daily tech newspapers
+            whenever the phone is on my hand. I also played FPS games CS2 on
+            Steam and Valorant (but very rarely right now). Terarria and Oxygen
+            Not Included are two &quot;offline&quot; games that I really spent
+            time on playing. I really recommend play these two survival and
+            advanture games. Connect with me for gaming stuffs via the the
+            button below.
+          </P>
+          <Box {...props} my={4}>
+            <Button
+              as={Link}
+              href="mailto:3dbrogaming2003@gmail.com"
+              scroll={false}
+              leftIcon={<SiGmail />}
+              colorScheme="teal"
+              width={300}
+              target="_blank"
+            >
+              3dbrogaming2003@gmail.com
+            </Button>
+          </Box>
+        </Section>
+        <Section delay="0.9">
+          <Heading as="h3" variant="section-title">
+            <AnimatedText text="The Earth? ..." />
+          </Heading>
+          <Paragraph>
+            Why The Earth? ... It is just where we are leaving:D. I just came up
+            with the idea of adding the earth 3D model to the page when trying
+            to decorate it.
+          </Paragraph>
+        </Section>
+      </Container>
+    </Layout>
+  )
+}
+
+export { getServerSideProps } from '@/lib/legacy-props'

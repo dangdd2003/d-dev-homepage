@@ -11,7 +11,6 @@ import {
   MenuList,
   MenuButton,
   IconButton,
-  useColorModeValue,
   LinkProps
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -30,7 +29,7 @@ function LinkItem({
   style
 }: LinkProps & { path: string }) {
   const active = path === href
-  const inactiveColor = useColorModeValue('gray.800', 'whiteAlpha.900')
+  const inactiveColor = 'header-text'
   return (
     <Link
       as={NextLink}
@@ -69,7 +68,7 @@ export default function Navbar(props: NavbarProps) {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue('#ffffff40', '#20202380')}
+      bg="navbar-bg"
       css={{ backdropFilter: 'blur(10px)' }}
       zIndex={2}
       {...props}
@@ -84,7 +83,7 @@ export default function Navbar(props: NavbarProps) {
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-            <Logo />
+            <Logo path={path} />
           </Heading>
         </Flex>
 
@@ -97,10 +96,16 @@ export default function Navbar(props: NavbarProps) {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          <LinkItem href="/connect" path={path}>
+          <LinkItem
+            href={path.startsWith('/legacy') ? '/legacy/connect' : '/connect'}
+            path={path}
+          >
             Connect
           </LinkItem>
-          <LinkItem href="/more" path={path}>
+          <LinkItem
+            href={path.startsWith('/legacy') ? '/legacy/more' : '/more'}
+            path={path}
+          >
             More
           </LinkItem>
           <LinkItem
@@ -126,13 +131,24 @@ export default function Navbar(props: NavbarProps) {
                 aria-label="Options"
               />
               <MenuList>
-                <MenuItem as={MenuLink} href="/">
+                <MenuItem
+                  as={MenuLink}
+                  href={path.startsWith('/legacy') ? '/legacy' : '/'}
+                >
                   About
                 </MenuItem>
-                <MenuItem as={MenuLink} href="/connect">
+                <MenuItem
+                  as={MenuLink}
+                  href={
+                    path.startsWith('/legacy') ? '/legacy/connect' : '/connect'
+                  }
+                >
                   Connect
                 </MenuItem>
-                <MenuItem as={MenuLink} href="/more">
+                <MenuItem
+                  as={MenuLink}
+                  href={path.startsWith('/legacy') ? '/legacy/more' : '/more'}
+                >
                   More
                 </MenuItem>
                 <MenuItem

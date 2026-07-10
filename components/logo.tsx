@@ -1,4 +1,4 @@
-import { Text, useColorModeValue } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
 import LetterDIcon from './icons/d'
@@ -21,13 +21,14 @@ const LogoBox = styled.span`
   }
 `
 
-export default function Logo() {
+export default function Logo({ path = '' }: { path?: string }) {
+  const isLegacy = path.startsWith('/legacy')
   return (
-    <Link href="/" scroll={false}>
+    <Link href={isLegacy ? '/legacy' : '/'} scroll={false}>
       <LogoBox>
         <LetterDIcon />
         <Text
-          color={useColorModeValue('gray.800', 'whiteAlpha.900')}
+          color="header-text"
           fontFamily='M PLUS Rounded 1c", sans-serif'
           fontWeight="bold"
           ml={3}

@@ -1,22 +1,50 @@
 import {
   extendTheme,
   type ThemeConfig,
-  StyleConfig,
-  type StyleFunctionProps
+  StyleConfig
 } from '@chakra-ui/react'
-import { mode } from '@chakra-ui/theme-tools'
 
 const config: ThemeConfig = {
   initialColorMode: 'system',
   useSystemColorMode: true
 }
 
-const styles = {
-  global: (props: StyleFunctionProps) => ({
-    body: {
-      bg: mode('#f0e7db', '#202023')(props)
+const semanticTokens = {
+  colors: {
+    'body-bg': {
+      default: '#f0e7db',
+      _dark: '#202023'
+    },
+    'body-text': {
+      default: '#1a202c',
+      _dark: 'whiteAlpha.900'
+    },
+    'glass-bg': {
+      default: 'whiteAlpha.500',
+      _dark: 'whiteAlpha.200'
+    },
+    'link-color': {
+      default: '#3d7aed',
+      _dark: '#ff63c3'
+    },
+    'navbar-bg': {
+      default: '#ffffff40',
+      _dark: '#20202380'
+    },
+    'header-text': {
+      default: 'gray.800',
+      _dark: 'whiteAlpha.900'
     }
-  })
+  }
+}
+
+const styles = {
+  global: {
+    body: {
+      bg: 'body-bg',
+      color: 'body-text'
+    }
+  }
 }
 
 const components: Record<string, StyleConfig> = {
@@ -39,10 +67,10 @@ const components: Record<string, StyleConfig> = {
     }
   },
   Link: {
-    baseStyle: (props: StyleFunctionProps) => ({
-      color: mode('#3d7aed', '#ff63c3')(props),
+    baseStyle: {
+      color: 'link-color',
       textUnderlineOffset: 3
-    })
+    }
   }
 }
 
@@ -54,6 +82,13 @@ const colors = {
   grassTeal: `#88ccca`
 }
 
-const theme = extendTheme({ config, components, fonts, colors, styles })
+const theme = extendTheme({
+  config,
+  components,
+  fonts,
+  colors,
+  styles,
+  semanticTokens
+})
 
 export default theme
