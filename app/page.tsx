@@ -5,13 +5,7 @@ import P from '@/components/paragraph'
 import { Section } from '@/components/section'
 import { AnimatedText, RevealText, TextLoop } from '@/components/text-effect'
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  Link
-} from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Link } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { motion } from 'framer-motion'

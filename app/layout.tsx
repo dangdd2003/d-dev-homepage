@@ -6,7 +6,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Doan Dinh Dang | Homepage',
   description: "Doan Dinh Dang's Homepage",
-  authors: [{ name: 'Doan Dinh Dang' }, { name: 'Đoàn Đình Đăng' }, { name: 'd-dev' }],
+  authors: [
+    { name: 'Doan Dinh Dang' },
+    { name: 'Đoàn Đình Đăng' },
+    { name: 'd-dev' }
+  ],
   metadataBase: new URL('https://www.dangdd.dev'),
   openGraph: {
     type: 'website',
@@ -52,7 +56,11 @@ export default async function RootLayout({
   const cookieString = cookieStore.toString()
 
   return (
-    <html lang="en" suppressHydrationWarning className={mPlusRounded1c.className}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={mPlusRounded1c.className}
+    >
       <head></head>
       <body suppressHydrationWarning>
         <ColorModeScript initialColorMode="system" type="cookie" />
