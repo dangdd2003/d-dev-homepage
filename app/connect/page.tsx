@@ -1,16 +1,32 @@
+'use client'
+
 import { Container, Box, Heading, Button } from '@chakra-ui/react'
-import Layout from '@/components/layouts/article'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io'
 import { Section } from '@/components/section'
+import { motion } from 'framer-motion'
+import { GridItemStyle } from '@/components/grid-item'
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 20 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: -0, y: 20 }
+}
 
 export default function Connection() {
   const props = {
     align: 'center'
   }
   return (
-    <Layout title="Connect">
+    <motion.article
+      initial="hidden"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+      transition={{ duration: 0.4, type: 'easeInOut' }}
+      style={{ position: 'relative' }}
+    >
       <Container>
         <Heading as="h2" variant="page-title">
           Connect to me through
@@ -57,8 +73,7 @@ export default function Connection() {
           </Section>
         </Box>
       </Container>
-    </Layout>
+      <GridItemStyle />
+    </motion.article>
   )
 }
-
-export { getServerSideProps } from '@/components/chakra'

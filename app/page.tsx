@@ -1,19 +1,21 @@
+'use client'
+
 import { BioSection, BioYear } from '@/components/bio'
-import Layout from '@/components/layouts/article'
 import P from '@/components/paragraph'
 import { Section } from '@/components/section'
 import { AnimatedText, RevealText, TextLoop } from '@/components/text-effect'
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  Link,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Link } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
+import { motion } from 'framer-motion'
+import { GridItemStyle } from '@/components/grid-item'
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 20 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: -0, y: 20 }
+}
 
 export default function Home() {
   const about = 'Hello, I\'m a simple "IT" guy based in Hanoi, Vietnam!'
@@ -21,11 +23,18 @@ export default function Home() {
     align: 'center'
   }
   return (
-    <Layout>
+    <motion.article
+      initial="hidden"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+      transition={{ duration: 0.4, type: 'easeInOut' }}
+      style={{ position: 'relative' }}
+    >
       <Container>
         <Box
           borderRadius="lg"
-          bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
+          bg="glass-bg"
           p={3}
           mb={6}
           textAlign="center"
@@ -44,7 +53,6 @@ export default function Home() {
               Engineer, and Researcher.
             </p>
           </Box>
-          {/* Profile Image */}
           <Box
             flexShrink={0}
             mt={{ base: 4, md: 0 }}
@@ -64,9 +72,8 @@ export default function Home() {
               <Image
                 src="/avatars/avatar.jpg"
                 alt="Profile image"
-                width={0}
-                height={0}
-                sizes="100vw"
+                width={100}
+                height={100}
                 style={{ width: '100%', height: 'auto' }}
               />
             </Box>
@@ -104,7 +111,6 @@ export default function Home() {
               rightIcon={<ChevronRightIcon />}
               colorScheme="teal"
             >
-              {/* My Portfolio */}
               More About Me
             </Button>
           </Box>
@@ -112,7 +118,6 @@ export default function Home() {
 
         <Section delay="0.5">
           <Heading as="h3" variant="section-title">
-            {/* Bio */}
             <AnimatedText text="Biography" />
           </Heading>
           <BioSection>
@@ -140,7 +145,6 @@ export default function Home() {
 
         <Section delay="0.7">
           <Heading as="h3" variant="section-title">
-            {/* I ♥ */}
             <AnimatedText text="I ♥" />
           </Heading>
           <P>
@@ -151,7 +155,6 @@ export default function Home() {
 
         <Section delay="0.9">
           <Heading as="h3" variant="section-title">
-            {/* Connect to me */}
             <AnimatedText text="Connect to me" />
           </Heading>
           <Box {...props} my={4}>
@@ -167,8 +170,7 @@ export default function Home() {
           </Box>
         </Section>
       </Container>
-    </Layout>
+      <GridItemStyle />
+    </motion.article>
   )
 }
-
-export { getServerSideProps } from '@/components/chakra'

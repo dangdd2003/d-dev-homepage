@@ -1,24 +1,42 @@
-FROM node:lts-alpine
+# Stage 1: Install dependencies
+FROM node:lts-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci
+
+# Stage 2: Build the application
+FROM node:lts-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+# Stage 3: Production runner
+FROM node:lts-alpine AS runner
 
 LABEL version="main"
 LABEL description="D-Dev's Homepage built as docker image for production ready"
 
-WORKDIR /homepage
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY . .
+# Create a non-root user for security
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-# Reduce image size by remove npm cache
-# RUN npm install && npm run build && rm -rf /root/.config /root/.npm
-RUN npm install \
-    && npm run build \
-    && rm -rf /root/.config /root/.npm node_modules \
-    && cp -r public .next/standalone/ \
-    && cp -r .next/static .next/standalone/.next/ \
-    && cp -r .next/standalone app \
-    && rm -rf .next
+# Copy only the necessary files for production
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# It is better to setup running as normal user instead of root user
-
-CMD [ "node" , "app/server.js" ]
+USER nextjs
 
 EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]

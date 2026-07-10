@@ -1,4 +1,5 @@
-import Layout from '@/components/layouts/article'
+'use client'
+
 import P, { Paragraph } from '@/components/paragraph'
 import { Section, SubSection } from '@/components/section'
 import { AnimatedText } from '@/components/text-effect'
@@ -12,13 +13,28 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
+import { motion } from 'framer-motion'
+import { GridItemStyle } from '@/components/grid-item'
+
+const variants = {
+  hidden: { opacity: 0, x: 0, y: 20 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: -0, y: 20 }
+}
 
 export default function More() {
   const props = {
     align: 'center'
   }
   return (
-    <Layout title="More">
+    <motion.article
+      initial="hidden"
+      animate="enter"
+      exit="exit"
+      variants={variants}
+      transition={{ duration: 0.4, type: 'easeInOut' }}
+      style={{ position: 'relative' }}
+    >
       <Container>
         <Box display={{ md: 'flex' }}>
           <Box flexGrow={1}>
@@ -180,8 +196,7 @@ export default function More() {
           </Paragraph>
         </Section>
       </Container>
-    </Layout>
+      <GridItemStyle />
+    </motion.article>
   )
 }
-
-export { getServerSideProps } from '@/components/chakra'

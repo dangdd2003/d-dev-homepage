@@ -15,4 +15,4 @@ export default function Post() {
   )
 }
 
-export { getServerSideProps } from '@/components/chakra'
+export { getServerSideProps } from '@/lib/legacy-props'

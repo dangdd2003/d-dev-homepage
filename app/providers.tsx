@@ -1,3 +1,5 @@
+'use client'
+
 import {
   ChakraProvider,
   cookieStorageManagerSSR,
@@ -5,12 +7,12 @@ import {
 } from '@chakra-ui/react'
 import theme from '@/lib/theme'
 
-export default function Chakra({
-  cookies,
-  children
+export function Providers({
+  children,
+  cookies
 }: {
-  cookies: string
-  children?: React.ReactNode
+  children: React.ReactNode
+  cookies?: string
 }) {
   const colorModeManager =
     typeof cookies === 'string'
