@@ -47,7 +47,10 @@ export default async function createEarth(scene: Scene) {
 
     // Phase 1: Core Texture (Color Map)
     const material = new MeshPhongMaterial({
-      map: loadTexture('/earth_texture/8081_earthmap4k.jpg', loadPromisesPhase1),
+      map: loadTexture(
+        '/earth_texture/8081_earthmap4k.jpg',
+        loadPromisesPhase1
+      ),
       bumpScale: 0.04
     })
     const earthMesh = new Mesh(geometry, material)
@@ -85,30 +88,52 @@ export default async function createEarth(scene: Scene) {
 
     // Earth is now visible! Start background Phase 2 & 3
     // Phase 2: Surface details (normal, spec, bump)
-    const p2Normal = loadTexture('/earth_texture/earthnormalmap.jpg', loadPromisesPhase2)
-    const p2Spec = loadTexture('/earth_texture/8081_earthspec4k.jpg', loadPromisesPhase2)
-    const p2Bump = loadTexture('/earth_texture/8081_earthbump4k.jpg', loadPromisesPhase2)
+    const p2Normal = loadTexture(
+      '/earth_texture/earthnormalmap.jpg',
+      loadPromisesPhase2
+    )
+    const p2Spec = loadTexture(
+      '/earth_texture/8081_earthspec4k.jpg',
+      loadPromisesPhase2
+    )
+    const p2Bump = loadTexture(
+      '/earth_texture/8081_earthbump4k.jpg',
+      loadPromisesPhase2
+    )
 
-    Promise.all(loadPromisesPhase2).then(() => {
-      material.normalMap = p2Normal
-      material.specularMap = p2Spec
-      material.bumpMap = p2Bump
-      material.needsUpdate = true
-    }).catch(err => console.warn('Phase 2 loading failed: ', err))
+    Promise.all(loadPromisesPhase2)
+      .then(() => {
+        material.normalMap = p2Normal
+        material.specularMap = p2Spec
+        material.bumpMap = p2Bump
+        material.needsUpdate = true
+      })
+      .catch(err => console.warn('Phase 2 loading failed: ', err))
 
     // Phase 3: Atmosphere & lights
-    const p3Lights = loadTexture('/earth_texture/8081_earthlights4k.jpg', loadPromisesPhase3)
-    const p3Clouds = loadTexture('/earth_texture/earthcloudmap.jpg', loadPromisesPhase3)
-    const p3CloudsTrans = loadTexture('/earth_texture/earthcloudmaptrans.jpg', loadPromisesPhase3)
+    const p3Lights = loadTexture(
+      '/earth_texture/8081_earthlights4k.jpg',
+      loadPromisesPhase3
+    )
+    const p3Clouds = loadTexture(
+      '/earth_texture/earthcloudmap.jpg',
+      loadPromisesPhase3
+    )
+    const p3CloudsTrans = loadTexture(
+      '/earth_texture/earthcloudmaptrans.jpg',
+      loadPromisesPhase3
+    )
 
-    Promise.all(loadPromisesPhase3).then(() => {
-      lightsMat.lightMap = p3Lights
-      lightsMat.needsUpdate = true
+    Promise.all(loadPromisesPhase3)
+      .then(() => {
+        lightsMat.lightMap = p3Lights
+        lightsMat.needsUpdate = true
 
-      cloudsMat.map = p3Clouds
-      cloudsMat.alphaMap = p3CloudsTrans
-      cloudsMat.needsUpdate = true
-    }).catch(err => console.warn('Phase 3 loading failed: ', err))
+        cloudsMat.map = p3Clouds
+        cloudsMat.alphaMap = p3CloudsTrans
+        cloudsMat.needsUpdate = true
+      })
+      .catch(err => console.warn('Phase 3 loading failed: ', err))
 
     return { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars }
   } catch (error) {
