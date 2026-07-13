@@ -26,7 +26,7 @@ const loader = new TextureLoader()
 function loadTexture(path: string, promises: Promise<Texture>[]) {
   if (!textureCache[path]) {
     let resolvePromise!: (value: Texture) => void
-    let rejectPromise!: (reason?: any) => void
+    let rejectPromise!: (reason?: unknown) => void
     const promise = new Promise<Texture>((resolve, reject) => {
       resolvePromise = resolve
       rejectPromise = reject

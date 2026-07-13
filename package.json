@@ -1,6 +1,7 @@
 {
   "name": "d-dev-portfolio",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
