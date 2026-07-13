@@ -14,23 +14,35 @@ import {
 import getFresnelMat from '@/lib/fresnel'
 import getStarfield from '@/lib/starfield'
 
-// Cache textures to avoid reloading
-const textureCache: Record<string, Texture> = {}
+interface CacheEntry {
+  texture: Texture
+  promise: Promise<Texture>
+}
+
+// Cache textures and their loading promises to avoid reloading and ensure all callers wait properly
+const textureCache: Record<string, CacheEntry> = {}
 const loader = new TextureLoader()
 
 function loadTexture(path: string, promises: Promise<Texture>[]) {
   if (!textureCache[path]) {
+    let resolvePromise!: (value: Texture) => void
+    let rejectPromise!: (reason?: any) => void
     const promise = new Promise<Texture>((resolve, reject) => {
-      textureCache[path] = loader.load(
-        path,
-        texture => resolve(texture),
-        undefined,
-        reject
-      )
+      resolvePromise = resolve
+      rejectPromise = reject
     })
-    promises.push(promise)
+
+    const texture = loader.load(
+      path,
+      t => resolvePromise(t),
+      undefined,
+      err => rejectPromise(err)
+    )
+
+    textureCache[path] = { texture, promise }
   }
-  return textureCache[path]
+  promises.push(textureCache[path].promise)
+  return textureCache[path].texture
 }
 
 export default async function createEarth(scene: Scene) {
@@ -58,9 +70,11 @@ export default async function createEarth(scene: Scene) {
 
     // Build empty structural materials for Phase 2/3 so we can update them on load
     const lightsMat = new MeshBasicMaterial({
-      blending: AdditiveBlending
+      blending: AdditiveBlending,
+      transparent: true
     })
     const lightsMesh = new Mesh(geometry, lightsMat)
+    earthGroup.add(lightsMesh)
 
     const cloudsMat = new MeshStandardMaterial({
       transparent: true,
@@ -83,11 +97,8 @@ export default async function createEarth(scene: Scene) {
     sunLight.position.set(1, 0.5, 1.5)
     scene.add(sunLight)
 
-    // Wait only for Phase 1 (Core Map)
-    await Promise.all(loadPromisesPhase1)
-
     // Earth is now visible! Start background Phase 2 & 3
-    // Phase 2: Surface details (normal, spec, bump)
+    // Start loading Phase 2 and 3 textures in parallel with Phase 1 to reduce total load time
     const p2Normal = loadTexture(
       '/earth_texture/earthnormalmap.jpg',
       loadPromisesPhase2
@@ -101,16 +112,6 @@ export default async function createEarth(scene: Scene) {
       loadPromisesPhase2
     )
 
-    Promise.all(loadPromisesPhase2)
-      .then(() => {
-        material.normalMap = p2Normal
-        material.specularMap = p2Spec
-        material.bumpMap = p2Bump
-        material.needsUpdate = true
-      })
-      .catch(err => console.warn('Phase 2 loading failed: ', err))
-
-    // Phase 3: Atmosphere & lights
     const p3Lights = loadTexture(
       '/earth_texture/8081_earthlights4k.jpg',
       loadPromisesPhase3
@@ -124,9 +125,23 @@ export default async function createEarth(scene: Scene) {
       loadPromisesPhase3
     )
 
+    // Wait only for Phase 1 (Core Map) to complete before rendering the earth
+    await Promise.all(loadPromisesPhase1)
+
+    // Apply Phase 2 textures when they finish loading
+    Promise.all(loadPromisesPhase2)
+      .then(() => {
+        material.normalMap = p2Normal
+        material.specularMap = p2Spec
+        material.bumpMap = p2Bump
+        material.needsUpdate = true
+      })
+      .catch(err => console.warn('Phase 2 loading failed: ', err))
+
+    // Apply Phase 3 textures when they finish loading
     Promise.all(loadPromisesPhase3)
       .then(() => {
-        lightsMat.lightMap = p3Lights
+        lightsMat.map = p3Lights
         lightsMat.needsUpdate = true
 
         cloudsMat.map = p3Clouds
