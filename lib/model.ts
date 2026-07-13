@@ -60,7 +60,7 @@ export default async function createEarth(scene: Scene) {
     // Phase 1: Core Texture (Color Map)
     const material = new MeshPhongMaterial({
       map: loadTexture(
-        '/earth_texture/8081_earthmap4k.jpg',
+        '/earth_texture/8081_earthmap4k.webp',
         loadPromisesPhase1
       ),
       bumpScale: 0.04
@@ -100,28 +100,28 @@ export default async function createEarth(scene: Scene) {
     // Earth is now visible! Start background Phase 2 & 3
     // Start loading Phase 2 and 3 textures in parallel with Phase 1 to reduce total load time
     const p2Normal = loadTexture(
-      '/earth_texture/earthnormalmap.jpg',
+      '/earth_texture/earthnormalmap.webp',
       loadPromisesPhase2
     )
     const p2Spec = loadTexture(
-      '/earth_texture/8081_earthspec4k.jpg',
+      '/earth_texture/8081_earthspec4k.webp',
       loadPromisesPhase2
     )
     const p2Bump = loadTexture(
-      '/earth_texture/8081_earthbump4k.jpg',
+      '/earth_texture/8081_earthbump4k.webp',
       loadPromisesPhase2
     )
 
     const p3Lights = loadTexture(
-      '/earth_texture/8081_earthlights4k.jpg',
+      '/earth_texture/8081_earthlights4k.webp',
       loadPromisesPhase3
     )
     const p3Clouds = loadTexture(
-      '/earth_texture/earthcloudmap.jpg',
+      '/earth_texture/earthcloudmap.webp',
       loadPromisesPhase3
     )
     const p3CloudsTrans = loadTexture(
-      '/earth_texture/earthcloudmaptrans.jpg',
+      '/earth_texture/earthcloudmaptrans.webp',
       loadPromisesPhase3
     )
 
