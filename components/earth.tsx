@@ -65,8 +65,13 @@ export default function Earth() {
       // finish creating the Earth before animation
       let req: number = 0
       let frame: number = 0
+      let active = true
       let disposeEarth: (() => void) | null = null
       createEarth(scene).then(earthData => {
+        if (!active) {
+          earthData.dispose()
+          return
+        }
         const { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars, dispose } =
           earthData
         disposeEarth = dispose
@@ -91,7 +96,9 @@ export default function Earth() {
               p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
             camera.lookAt(target)
           }
-          controls.update()
+          if (frame > 100) {
+            controls.update()
+          }
           renderer.render(scene, camera)
         }
         animate()
@@ -104,6 +111,7 @@ export default function Earth() {
         camera.updateProjectionMatrix()
         renderer.domElement.remove()
         renderer.dispose()
+        active = false
         if (disposeEarth) disposeEarth()
       }
     }
