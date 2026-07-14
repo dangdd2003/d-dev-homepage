@@ -9,6 +9,7 @@ import {
   AdditiveBlending,
   MeshStandardMaterial,
   DirectionalLight,
+  type Material,
   type Scene
 } from 'three'
 import getFresnelMat from '@/lib/fresnel'
@@ -54,7 +55,7 @@ export default async function createEarth(scene: Scene) {
     const earthGroup = new Group()
     earthGroup.rotation.z = (-23.4 * Math.PI) / 180
     scene.add(earthGroup)
-    const details = 12
+    const details = 16
     const geometry = new IcosahedronGeometry(1, details)
 
     // Phase 1: Core Texture (Color Map)
@@ -93,7 +94,7 @@ export default async function createEarth(scene: Scene) {
     const stars = getStarfield({ numStars: 1000 })
     scene.add(stars)
 
-    const sunLight = new DirectionalLight(0xffffff)
+    const sunLight = new DirectionalLight(0xffffff, 0.7)
     sunLight.position.set(1, 0.5, 1.5)
     scene.add(sunLight)
 
@@ -150,7 +151,17 @@ export default async function createEarth(scene: Scene) {
       })
       .catch(err => console.warn('Phase 3 loading failed: ', err))
 
-    return { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars }
+    const dispose = () => {
+      geometry.dispose()
+      material.dispose()
+      lightsMat.dispose()
+      cloudsMat.dispose()
+      fresnelMat.dispose()
+      stars.geometry.dispose()
+      ;(stars.material as Material).dispose()
+    }
+
+    return { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars, dispose }
   } catch (error) {
     console.error('Error in creating The Earth: ', error)
     throw new Error('Failed to create The Earth!')
