@@ -57,6 +57,7 @@ export default function Earth() {
       // controler
       const controls = new OrbitControls(camera, renderer.domElement)
       // controls.autoRotate = true
+      controls.enableDamping = true
       controls.target = target
 
       const scene = new Scene()
@@ -64,8 +65,16 @@ export default function Earth() {
       // finish creating the Earth before animation
       let req: number = 0
       let frame: number = 0
+      let active = true
+      let disposeEarth: (() => void) | null = null
       createEarth(scene).then(earthData => {
-        const { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars } = earthData
+        if (!active) {
+          earthData.dispose()
+          return
+        }
+        const { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars, dispose } =
+          earthData
+        disposeEarth = dispose
         const animate = () => {
           req = requestAnimationFrame(animate)
 
@@ -86,7 +95,8 @@ export default function Earth() {
             camera.position.z =
               p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
             camera.lookAt(target)
-          } else {
+          }
+          if (frame > 100) {
             controls.update()
           }
           renderer.render(scene, camera)
@@ -101,6 +111,8 @@ export default function Earth() {
         camera.updateProjectionMatrix()
         renderer.domElement.remove()
         renderer.dispose()
+        active = false
+        if (disposeEarth) disposeEarth()
       }
     }
   }, [])
