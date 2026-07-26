@@ -71,7 +71,7 @@ const components: Record<string, StyleConfig> = {
 }
 
 const fonts = {
-  heading: "'M PLUS Rounded 1c'"
+  heading: 'var(--font-m-plus)'
 }
 
 const colors = {

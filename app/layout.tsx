@@ -39,13 +39,7 @@ export const metadata: Metadata = {
 import { ColorModeScript } from '@chakra-ui/react'
 import { cookies } from 'next/headers'
 
-import { M_PLUS_Rounded_1c } from 'next/font/google'
-
-const mPlusRounded1c = M_PLUS_Rounded_1c({
-  weight: ['300', '700'],
-  subsets: ['latin'],
-  display: 'swap'
-})
+import { mPlusRounded1c } from '@/lib/fonts'
 
 export default async function RootLayout({
   children
@@ -59,7 +53,7 @@ export default async function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={mPlusRounded1c.className}
+      className={`${mPlusRounded1c.className} ${mPlusRounded1c.variable}`}
     >
       <head></head>
       <body suppressHydrationWarning>
