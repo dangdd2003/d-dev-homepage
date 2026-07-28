@@ -74,6 +74,9 @@ export default function Home() {
                 alt="Profile image"
                 width={100}
                 height={100}
+                priority
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAKAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQEG/8QAIRAAAQMDBAMAAAAAAAAAAAAAAQACEQMEBRUiMVIzQZH/xAAVAQEBAAAAAAAAAAAAAAAAAAAEBf/EABoRAAICAwAAAAAAAAAAAAAAAAECABEEEyH/2gAMAwEAAhEDEQA/AEDUwmSvK9Oi2bhnln0rpOO6CxWAJF5dGTJ5PaUL3ydzvqJtrlS4mAHWyZ//2Q=="
                 style={{ width: '100%', height: 'auto' }}
               />
             </Box>
