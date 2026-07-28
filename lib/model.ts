@@ -24,6 +24,14 @@ interface CacheEntry {
 const textureCache: Record<string, CacheEntry> = {}
 const loader = new TextureLoader()
 
+// Dispose all cached textures and free GPU memory
+export function disposeTextures() {
+  for (const key of Object.keys(textureCache)) {
+    textureCache[key].texture.dispose()
+    delete textureCache[key]
+  }
+}
+
 function loadTexture(path: string, promises: Promise<Texture>[]) {
   if (!textureCache[path]) {
     let resolvePromise!: (value: Texture) => void
@@ -159,6 +167,7 @@ export default async function createEarth(scene: Scene) {
       fresnelMat.dispose()
       stars.geometry.dispose()
       ;(stars.material as Material).dispose()
+      disposeTextures()
     }
 
     return { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars, dispose }
