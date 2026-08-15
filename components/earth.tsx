@@ -148,58 +148,69 @@ export default function Earth() {
       let frame = 0
       let active = true
       let disposeEarth: (() => void) | null = null
-      createEarth(scene).then(earthData => {
-        if (!active) {
-          earthData.dispose()
-          return
-        }
-        const { earthMesh, lightsMesh, cloudsMesh, glowMesh, stars, dispose } =
-          earthData
-        activeMesh = earthMesh
-        disposeEarth = dispose
-        const animate = () => {
-          req = requestAnimationFrame(animate)
-
-          earthMesh.rotation.y += 0.002
-          lightsMesh.rotation.y += 0.002
-          cloudsMesh.rotation.y += 0.0023
-          glowMesh.rotation.y += 0.002
-          stars.rotation.y -= 0.0002
-
-          frame = frame <= 100 ? frame + 1 : frame
-
-          if (frame <= 100) {
-            const p = initialCameraPosition
-            const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20
-
-            camera.position.x =
-              p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed)
-            camera.position.z =
-              p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
-            camera.lookAt(target)
-          } else if (isResetting) {
-            resetProgress += 0.007
-            if (resetProgress >= 1) {
-              resetProgress = 1
-              isResetting = false
-              camera.position.copy(initialCameraPosition)
-              controls.target.copy(target)
-              camera.lookAt(target)
-              controls.update()
-            } else {
-              const t = easeInOutCubic(resetProgress)
-              camera.position.lerpVectors(startPos, initialCameraPosition, t)
-              controls.target.lerpVectors(startTarget, target, t)
-              camera.lookAt(controls.target)
-            }
-          } else {
-            controls.update()
+      createEarth(scene)
+        .then(earthData => {
+          if (!active) {
+            earthData.dispose()
+            return
           }
-          renderer.render(scene, camera)
-        }
-        animate()
-        setLoading(false)
-      })
+          const {
+            earthMesh,
+            lightsMesh,
+            cloudsMesh,
+            glowMesh,
+            stars,
+            dispose
+          } = earthData
+          activeMesh = earthMesh
+          disposeEarth = dispose
+          const animate = () => {
+            req = requestAnimationFrame(animate)
+
+            earthMesh.rotation.y += 0.002
+            lightsMesh.rotation.y += 0.002
+            cloudsMesh.rotation.y += 0.0023
+            glowMesh.rotation.y += 0.002
+            stars.rotation.y -= 0.0002
+
+            frame = frame <= 100 ? frame + 1 : frame
+
+            if (frame <= 100) {
+              const p = initialCameraPosition
+              const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20
+
+              camera.position.x =
+                p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed)
+              camera.position.z =
+                p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
+              camera.lookAt(target)
+            } else if (isResetting) {
+              resetProgress += 0.007
+              if (resetProgress >= 1) {
+                resetProgress = 1
+                isResetting = false
+                camera.position.copy(initialCameraPosition)
+                controls.target.copy(target)
+                camera.lookAt(target)
+                controls.update()
+              } else {
+                const t = easeInOutCubic(resetProgress)
+                camera.position.lerpVectors(startPos, initialCameraPosition, t)
+                controls.target.lerpVectors(startTarget, target, t)
+                camera.lookAt(controls.target)
+              }
+            } else {
+              controls.update()
+            }
+            renderer.render(scene, camera)
+          }
+          animate()
+          setLoading(false)
+        })
+        .catch(err => {
+          console.error('Failed to initialize Earth 3D:', err)
+          setLoading(false)
+        })
 
       return () => {
         cancelAnimationFrame(req)
