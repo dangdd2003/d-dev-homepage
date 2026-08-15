@@ -1,4 +1,4 @@
-import { LegacyRef, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { Box, Spinner } from '@chakra-ui/react'
 
 export function EarthSpinner() {
@@ -14,25 +14,23 @@ export function EarthSpinner() {
   )
 }
 
-export const EarthContainer = forwardRef(
-  (
-    { children }: { children: React.ReactNode },
-    ref: LegacyRef<HTMLDivElement>
-  ) => (
-    <Box
-      ref={ref}
-      className="earth"
-      m="auto"
-      mt={['-20px', '-60px', '-120px']}
-      mb={['-40px', '-140px', '-200px']}
-      w={[280, 480, 640]}
-      h={[280, 480, 640]}
-      position="relative"
-    >
-      {children}
-    </Box>
-  )
-)
+export const EarthContainer = forwardRef<
+  HTMLDivElement,
+  { children?: React.ReactNode }
+>(({ children }, ref) => (
+  <Box
+    ref={ref}
+    className="earth"
+    m="auto"
+    mt={['-20px', '-60px', '-120px']}
+    mb={['-40px', '-140px', '-200px']}
+    w={[280, 480, 640]}
+    h={[280, 480, 640]}
+    position="relative"
+  >
+    {children}
+  </Box>
+))
 EarthContainer.displayName = 'EarthContainer'
 
 export default function Loader() {

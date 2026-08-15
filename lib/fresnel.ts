@@ -1,9 +1,14 @@
 import * as THREE from 'three'
 
+export interface FresnelOptions {
+  rimHex?: number
+  facingHex?: number
+}
+
 export default function getFresnelMat({
   rimHex = 0x0088ff,
   facingHex = 0x000000
-} = {}) {
+}: FresnelOptions = {}): THREE.ShaderMaterial {
   const uniforms = {
     color1: { value: new THREE.Color(rimHex) },
     color2: { value: new THREE.Color(facingHex) },

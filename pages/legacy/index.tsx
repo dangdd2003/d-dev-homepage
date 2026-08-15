@@ -73,21 +73,20 @@ export default function Home() {
             <TextLoop texts={['Hello', 'Xin Chào', 'Bonjour']} /> from a
             student! &#129299; My name is Dang. I&apos;m a graduated Computer
             Science student from{' '}
-            <Link target="_blank" href="https://usth.edu.vn/">
+            <Link isExternal href="https://usth.edu.vn/">
               University of Science and Technology Hanoi - USTH
             </Link>
-            . I spend most of my time on researching and studying about AI and
-            Machine Learning stuffs (mostly about image, and LLM). I also focus
-            on DevOps, System Admin as the second carrier path. I spend 30
-            minutes to 1 hour on learning French as my 3rd language in every
-            morning. In my free time, I sometimes learn to 3D modelling in
-            Computer Graphics. Becoming an AI Engineer is what I dream of when I
-            started studying in this field. Just think about our future home,
-            when we step into our house, the light, the music, etc... turn on
-            automatically. With only our voice, our hand action, the house
-            operates like magic while we are just sitting on sofa. Is it really
-            convenient, time-saving, and &quot;funny&quot;, isn&apos;t it ?
-            &#128522;
+            . I spend most of my time researching and studying AI and Machine
+            Learning (mostly about Computer Vision and LLMs). I also focus on
+            DevOps and System Administration as my second career path. I spend
+            30 minutes to 1 hour learning French as my 3rd language every
+            morning. In my free time, I sometimes learn 3D modelling in Computer
+            Graphics. Becoming an AI Engineer is what I dream of when I started
+            studying in this field. Just think about our future home: when we
+            step into our house, the lights, the music, etc. turn on
+            automatically. With only our voice or hand gestures, the house
+            operates like magic while we are just sitting on the sofa.
+            Isn&apos;t that really convenient, time-saving, and fun? &#128522;
           </P>
           <Box {...props} my={4}>
             <Button

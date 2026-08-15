@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   authors: [
     { name: 'Doan Dinh Dang' },
     { name: 'Đoàn Đình Đăng' },
-    { name: 'd-dev' }
+    { name: 'Đ-Dev' }
   ],
   metadataBase: new URL('https://www.dangdd.dev'),
   openGraph: {

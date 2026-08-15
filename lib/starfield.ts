@@ -11,7 +11,20 @@ import {
 // Cache texture to avoid reloading on every call
 let starTexture: Texture | null = null
 
-export default function getStarfield({ numStars = 500 } = {}) {
+export function disposeStarTexture() {
+  if (starTexture) {
+    starTexture.dispose()
+    starTexture = null
+  }
+}
+
+export interface StarfieldOptions {
+  numStars?: number
+}
+
+export default function getStarfield({
+  numStars = 500
+}: StarfieldOptions = {}): Points<BufferGeometry, PointsMaterial> {
   function randomSpherePoint() {
     const radius = Math.random() * 25 + 25
     const u = Math.random()

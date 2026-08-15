@@ -25,6 +25,7 @@ export default function Connection() {
               colorScheme="teal"
               width={300}
               target="_blank"
+              rel="noopener noreferrer"
             >
               dangdoan2206@gmail.com
             </Button>
@@ -38,6 +39,7 @@ export default function Connection() {
               colorScheme="teal"
               width={300}
               target="_blank"
+              rel="noopener noreferrer"
             >
               @dangdd2003
             </Button>
@@ -51,6 +53,7 @@ export default function Connection() {
               colorScheme="teal"
               width={300}
               target="_blank"
+              rel="noopener noreferrer"
             >
               Doan Dinh Dang
             </Button>

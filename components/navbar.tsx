@@ -24,9 +24,11 @@ function LinkItem({
   path,
   children,
   target,
+  rel,
   display,
   alignItems,
-  style
+  style,
+  ...props
 }: LinkProps & { path: string }) {
   const active = path === href
   const inactiveColor = 'header-text'
@@ -39,9 +41,11 @@ function LinkItem({
       bg={active ? 'grassTeal' : undefined}
       color={active ? `#202023` : inactiveColor}
       target={target}
+      rel={rel}
       display={display}
       alignItems={alignItems}
       style={style}
+      {...props}
     >
       {children}
     </Link>
@@ -112,6 +116,7 @@ export default function Navbar(props: NavbarProps) {
             href="https://github.com/dangdd2003/d-dev-homepage"
             path={path}
             target="_blank"
+            rel="noopener noreferrer"
             display="inline-flex"
             alignItems="center"
             style={{ gap: 3 }}

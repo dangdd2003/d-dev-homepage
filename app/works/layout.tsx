@@ -1,4 +1,6 @@
-export const metadata = {
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
   title: 'Works | Doan Dinh Dang',
   description: "Dang's Works"
 }

@@ -37,7 +37,7 @@ export function PostGridItem({
           width={200}
           height={200}
         />
-        <LinkOverlay href={href} target="_blank">
+        <LinkOverlay href={href} isExternal>
           <Text mt={2}>{title}</Text>
         </LinkOverlay>
         <Text fontSize={14}>{children}</Text>

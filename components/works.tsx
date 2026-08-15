@@ -2,7 +2,11 @@ import NextLink from 'next/link'
 import { Heading, Box, Image, Link, Badge } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
-export function Title(children: React.ReactNode) {
+export interface TitleProps {
+  children?: React.ReactNode
+}
+
+export function Title({ children }: TitleProps) {
   return (
     <Box>
       <Link as={NextLink} href="/works">
@@ -19,11 +23,20 @@ export function Title(children: React.ReactNode) {
   )
 }
 
-export function WrokImage(src: string, alt: string) {
+export interface WorkImageProps {
+  src: string
+  alt: string
+}
+
+export function WorkImage({ src, alt }: WorkImageProps) {
   return <Image borderRadius="lg" w="full" src={src} alt={alt} mb={4} />
 }
 
-export function Meta(children: React.ReactNode) {
+export interface MetaProps {
+  children?: React.ReactNode
+}
+
+export function Meta({ children }: MetaProps) {
   return (
     <Badge colorScheme="green" mr={2}>
       {children}

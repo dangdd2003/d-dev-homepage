@@ -1,20 +1,16 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 
-function splitString(InputString: string) {
-  const characters: string[] = []
-  const regex = /[\s\S]/gu
-
-  let match
-
-  while ((match = regex.exec(InputString)) !== null) {
-    characters.push(match[0])
-  }
-  return characters
+function splitString(inputString: string): string[] {
+  return Array.from(inputString)
 }
 
-export function RevealText({ input }: { input: string }) {
-  const splitedString = splitString(input)
+export interface RevealTextProps {
+  input: string
+}
+
+export function RevealText({ input }: RevealTextProps) {
+  const characters = splitString(input)
   return (
     <motion.div
       initial="hidden"
@@ -22,7 +18,7 @@ export function RevealText({ input }: { input: string }) {
       transition={{ staggerChildren: 0.03 }}
       viewport={{ once: true }}
     >
-      {splitedString.map((char, index) => (
+      {characters.map((char, index) => (
         <motion.span
           key={index}
           transition={{ duration: 1 }}
@@ -35,15 +31,14 @@ export function RevealText({ input }: { input: string }) {
   )
 }
 
-export function AnimatedText({
-  text,
-  once = true
-}: {
+export interface AnimatedTextProps {
   text: string
   once?: boolean
-}) {
-  const splitedText = splitString(text)
-  const ref = useRef(null)
+}
+
+export function AnimatedText({ text, once = true }: AnimatedTextProps) {
+  const characters = splitString(text)
+  const ref = useRef<HTMLSpanElement | null>(null)
   const isInView = useInView(ref, { amount: 0.5, once })
   return (
     <motion.span
@@ -56,7 +51,7 @@ export function AnimatedText({
       animate={isInView ? 'visible' : 'hidden'}
       aria-hidden
     >
-      {splitedText.map((char, index) => (
+      {characters.map((char, index) => (
         <motion.span
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           key={index}
@@ -69,20 +64,29 @@ export function AnimatedText({
   )
 }
 
-export function TextLoop({ texts }: { texts: string[] }) {
-  const [index, setIndex] = useState(0)
+export interface TextLoopProps<T extends readonly string[]> {
+  texts: T
+  intervalMs?: number
+}
+
+export function TextLoop<const T extends readonly string[]>({
+  texts,
+  intervalMs = 3000
+}: TextLoopProps<T>) {
+  const [index, setIndex] = useState<number>(0)
 
   useEffect(() => {
+    if (texts.length === 0) return
+
     const timeout = setTimeout(() => {
-      let next = index + 1
-      if (next === texts.length) {
-        next = 0
-      }
-      setIndex(next)
-    }, 3 * 1000)
+      setIndex(prev => (prev + 1) % texts.length)
+    }, intervalMs)
 
     return () => clearTimeout(timeout)
-  }, [index, texts.length])
+  }, [index, texts.length, intervalMs])
+
+  const currentText = texts[index]
+  if (!currentText) return null
 
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -94,7 +98,7 @@ export function TextLoop({ texts }: { texts: string[] }) {
         exit={{ y: 20, opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
-        {texts[index]}
+        {currentText}
       </motion.span>
     </AnimatePresence>
   )

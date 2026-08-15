@@ -9,11 +9,23 @@ import {
   AdditiveBlending,
   MeshStandardMaterial,
   DirectionalLight,
-  type Material,
-  type Scene
+  type Scene,
+  Points,
+  BufferGeometry,
+  PointsMaterial,
+  ShaderMaterial
 } from 'three'
 import getFresnelMat from '@/lib/fresnel'
-import getStarfield from '@/lib/starfield'
+import getStarfield, { disposeStarTexture } from '@/lib/starfield'
+
+export interface EarthModel {
+  earthMesh: Mesh<IcosahedronGeometry, MeshPhongMaterial>
+  lightsMesh: Mesh<IcosahedronGeometry, MeshBasicMaterial>
+  cloudsMesh: Mesh<IcosahedronGeometry, MeshStandardMaterial>
+  glowMesh: Mesh<IcosahedronGeometry, ShaderMaterial>
+  stars: Points<BufferGeometry, PointsMaterial>
+  dispose: () => void
+}
 
 interface CacheEntry {
   texture: Texture
@@ -27,13 +39,14 @@ const loader = new TextureLoader()
 // Dispose all cached textures and free GPU memory
 export function disposeTextures() {
   for (const key of Object.keys(textureCache)) {
-    textureCache[key].texture.dispose()
+    textureCache[key]?.texture.dispose()
     delete textureCache[key]
   }
 }
 
-function loadTexture(path: string, promises: Promise<Texture>[]) {
-  if (!textureCache[path]) {
+function loadTexture(path: string, promises: Promise<Texture>[]): Texture {
+  const cached = textureCache[path]
+  if (!cached) {
     let resolvePromise!: (value: Texture) => void
     let rejectPromise!: (reason?: unknown) => void
     const promise = new Promise<Texture>((resolve, reject) => {
@@ -49,12 +62,14 @@ function loadTexture(path: string, promises: Promise<Texture>[]) {
     )
 
     textureCache[path] = { texture, promise }
+    promises.push(promise)
+    return texture
   }
-  promises.push(textureCache[path].promise)
-  return textureCache[path].texture
+  promises.push(cached.promise)
+  return cached.texture
 }
 
-export default async function createEarth(scene: Scene) {
+export default async function createEarth(scene: Scene): Promise<EarthModel> {
   try {
     const loadPromisesPhase1: Promise<Texture>[] = []
     const loadPromisesPhase2: Promise<Texture>[] = []
@@ -137,19 +152,25 @@ export default async function createEarth(scene: Scene) {
     // Wait only for Phase 1 (Core Map) to complete before rendering the earth
     await Promise.all(loadPromisesPhase1)
 
+    let isDisposed = false
+
     // Apply Phase 2 textures when they finish loading
     Promise.all(loadPromisesPhase2)
       .then(() => {
+        if (isDisposed) return
         material.normalMap = p2Normal
         material.specularMap = p2Spec
         material.bumpMap = p2Bump
         material.needsUpdate = true
       })
-      .catch(err => console.warn('Phase 2 loading failed: ', err))
+      .catch(err => {
+        if (!isDisposed) console.warn('Phase 2 loading failed: ', err)
+      })
 
     // Apply Phase 3 textures when they finish loading
     Promise.all(loadPromisesPhase3)
       .then(() => {
+        if (isDisposed) return
         lightsMat.map = p3Lights
         lightsMat.needsUpdate = true
 
@@ -157,16 +178,26 @@ export default async function createEarth(scene: Scene) {
         cloudsMat.alphaMap = p3CloudsTrans
         cloudsMat.needsUpdate = true
       })
-      .catch(err => console.warn('Phase 3 loading failed: ', err))
+      .catch(err => {
+        if (!isDisposed) console.warn('Phase 3 loading failed: ', err)
+      })
 
     const dispose = () => {
+      isDisposed = true
+      scene.remove(earthGroup)
+      scene.remove(stars)
+      scene.remove(sunLight)
+      sunLight.dispose()
       geometry.dispose()
       material.dispose()
       lightsMat.dispose()
       cloudsMat.dispose()
-      fresnelMat.dispose()
-      stars.geometry.dispose()
-      ;(stars.material as Material).dispose()
+      if (Array.isArray(stars.material)) {
+        stars.material.forEach(m => m.dispose())
+      } else {
+        stars.material.dispose()
+      }
+      disposeStarTexture()
       disposeTextures()
     }
 

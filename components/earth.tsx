@@ -6,26 +6,30 @@ import {
   Scene,
   SRGBColorSpace
 } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { EarthSpinner, EarthContainer } from '@/components/earth-loader'
 import createEarth from '@/lib/model'
 
-function easeOutCirc(x: number) {
+function easeOutCirc(x: number): number {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
 export default function Earth() {
   const refContainer = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
-  const refRenderer = useRef<WebGLRenderer>()
+  const refRenderer = useRef<WebGLRenderer | null>(null)
+  const refCamera = useRef<PerspectiveCamera | null>(null)
 
   const handleWindowResize = useCallback(() => {
     const { current: renderer } = refRenderer
+    const { current: camera } = refCamera
     const { current: container } = refContainer
-    if (container && renderer) {
+    if (container && renderer && camera) {
       const scW = container.clientWidth
       const scH = container.clientHeight
       renderer.setSize(scW, scH)
+      camera.aspect = scW / scH
+      camera.updateProjectionMatrix()
     }
   }, [])
 
@@ -53,8 +57,9 @@ export default function Earth() {
 
       container.appendChild(renderer.domElement)
       refRenderer.current = renderer
+      refCamera.current = camera
 
-      // controler
+      // controller
       const controls = new OrbitControls(camera, renderer.domElement)
       // controls.autoRotate = true
       controls.enableDamping = true
@@ -107,8 +112,7 @@ export default function Earth() {
 
       return () => {
         cancelAnimationFrame(req)
-        camera.aspect = scW / scH
-        camera.updateProjectionMatrix()
+        controls.dispose()
         renderer.domElement.remove()
         renderer.dispose()
         active = false

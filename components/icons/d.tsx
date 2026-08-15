@@ -4,7 +4,7 @@ export default function LetterDIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       height={20}
-      widths={20}
+      width={20}
       className="w-5 inline-block transition-transform group-hover:rotate-[20deg]"
       viewBox="0 0 32 32"
       {...props}
