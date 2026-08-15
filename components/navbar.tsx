@@ -29,7 +29,7 @@ function LinkItem({
   alignItems,
   style,
   ...props
-}: LinkProps & { path: string }) {
+}: LinkProps & { path: string; href: string }) {
   const active = path === href
   const inactiveColor = 'header-text'
   return (
@@ -63,9 +63,6 @@ interface NavbarProps {
 
 export default function Navbar(props: NavbarProps) {
   const { path } = props
-  const boxProps = {
-    align: 'right'
-  }
 
   return (
     <Box
@@ -125,7 +122,7 @@ export default function Navbar(props: NavbarProps) {
             Source
           </LinkItem>
         </Stack>
-        <Box flex={1} {...boxProps}>
+        <Box flex={1} textAlign="right">
           <ThemeToggleButton />
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy id="navbar-menu">

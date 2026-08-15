@@ -11,11 +11,15 @@ export interface LegacyPageProps {
 export function getServerSideProps({
   req
 }: GetServerSidePropsContext): GetServerSidePropsResult<LegacyPageProps> {
+  const forwardedHost = req.headers['x-forwarded-host']
   const rawHost =
-    (req.headers['x-forwarded-host'] as string) ||
-    (req.headers.host as string) ||
+    (Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost) ||
+    req.headers.host ||
     'dangdd.dev'
-  const rawProtocol = (req.headers['x-forwarded-proto'] as string) || 'https'
+  const forwardedProto = req.headers['x-forwarded-proto']
+  const rawProtocol =
+    (Array.isArray(forwardedProto) ? forwardedProto[0] : forwardedProto) ||
+    'https'
   const host = (rawHost.split(',')[0] ?? '').trim()
   const protocol = (rawProtocol.split(',')[0] ?? 'https').trim()
   const bareHost = host.replace(/^www\./, '').split(':')[0] ?? ''

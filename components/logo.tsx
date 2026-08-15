@@ -29,9 +29,9 @@ export default function Logo({ path = '' }: { path?: string }) {
         <LetterDIcon />
         <Text
           color="header-text"
-          fontFamily='M PLUS Rounded 1c", sans-serif'
+          fontFamily='var(--font-m-plus), "M PLUS Rounded 1c", sans-serif'
           fontWeight="bold"
-          ml={3}
+          ml={1}
         >
           Doan Dinh Dang
         </Text>

@@ -5,22 +5,27 @@ import {
   IcosahedronGeometry,
   MeshPhongMaterial,
   Mesh,
-  MeshBasicMaterial,
   AdditiveBlending,
   MeshStandardMaterial,
   DirectionalLight,
+  AmbientLight,
   type Scene,
   Points,
   BufferGeometry,
   PointsMaterial,
-  ShaderMaterial
+  ShaderMaterial,
+  Vector3,
+  DataTexture,
+  RGBAFormat,
+  Color,
+  SRGBColorSpace
 } from 'three'
 import getFresnelMat from '@/lib/fresnel'
 import getStarfield, { disposeStarTexture } from '@/lib/starfield'
 
 export interface EarthModel {
   earthMesh: Mesh<IcosahedronGeometry, MeshPhongMaterial>
-  lightsMesh: Mesh<IcosahedronGeometry, MeshBasicMaterial>
+  lightsMesh: Mesh<IcosahedronGeometry, ShaderMaterial>
   cloudsMesh: Mesh<IcosahedronGeometry, MeshStandardMaterial>
   glowMesh: Mesh<IcosahedronGeometry, ShaderMaterial>
   stars: Points<BufferGeometry, PointsMaterial>
@@ -44,7 +49,11 @@ export function disposeTextures() {
   }
 }
 
-function loadTexture(path: string, promises: Promise<Texture>[]): Texture {
+function loadTexture(
+  path: string,
+  promises: Promise<Texture>[],
+  isColor = false
+): Texture {
   const cached = textureCache[path]
   if (!cached) {
     let resolvePromise!: (value: Texture) => void
@@ -56,10 +65,14 @@ function loadTexture(path: string, promises: Promise<Texture>[]): Texture {
 
     const texture = loader.load(
       path,
-      t => resolvePromise(t),
+      t => {
+        if (isColor) t.colorSpace = SRGBColorSpace
+        resolvePromise(t)
+      },
       undefined,
       err => rejectPromise(err)
     )
+    if (isColor) texture.colorSpace = SRGBColorSpace
 
     textureCache[path] = { texture, promise }
     promises.push(promise)
@@ -81,35 +94,83 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
     const details = 16
     const geometry = new IcosahedronGeometry(1, details)
 
-    // Phase 1: Core Texture (Color Map)
+    // Phase 1: Core Texture (Color-Graded High-Contrast Day Map)
     const material = new MeshPhongMaterial({
       map: loadTexture(
-        '/earth_texture/8081_earthmap4k.webp',
-        loadPromisesPhase1
+        '/earth_texture/2k_earth_daymap.webp',
+        loadPromisesPhase1,
+        true
       ),
-      bumpScale: 0.04
+      specular: new Color(0x333333),
+      shininess: 15
     })
     const earthMesh = new Mesh(geometry, material)
     earthGroup.add(earthMesh)
 
-    // Build empty structural materials for Phase 2/3 so we can update them on load
-    const lightsMat = new MeshBasicMaterial({
+    // Sun light positioned for a vibrant 65% day / 35% night split
+    const sunPos = new Vector3(3.0, 1.2, 3.5)
+    const sunDirection = sunPos.clone().normalize()
+
+    // 1x1 transparent dummy texture so WebGL sampler2D is always valid before Phase 3 loads
+    const emptyTexture = new DataTexture(
+      new Uint8Array([0, 0, 0, 0]),
+      1,
+      1,
+      RGBAFormat
+    )
+    emptyTexture.needsUpdate = true
+
+    // Sun-aware Night Lights shader: city lights glow vividly on the night side
+    const lightsUniforms = {
+      lightsTexture: { value: emptyTexture as Texture },
+      sunDirection: { value: sunDirection }
+    }
+    const lightsMat = new ShaderMaterial({
+      uniforms: lightsUniforms,
+      vertexShader: `
+        varying vec2 vUv;
+        varying vec3 vWorldNormal;
+
+        void main() {
+          vUv = uv;
+          vWorldNormal = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D lightsTexture;
+        uniform vec3 sunDirection;
+
+        varying vec2 vUv;
+        varying vec3 vWorldNormal;
+
+        void main() {
+          vec4 texColor = texture2D(lightsTexture, vUv);
+          float dProd = dot(vWorldNormal, sunDirection);
+          float nightFactor = smoothstep(0.2, -0.1, dProd);
+          gl_FragColor = vec4(texColor.rgb * nightFactor * 2.2, texColor.a * nightFactor);
+        }
+      `,
+      transparent: true,
       blending: AdditiveBlending,
-      transparent: true
+      depthWrite: false
     })
     const lightsMesh = new Mesh(geometry, lightsMat)
+    lightsMesh.scale.setScalar(1.001)
     earthGroup.add(lightsMesh)
 
     const cloudsMat = new MeshStandardMaterial({
       transparent: true,
-      opacity: 0.5,
-      blending: AdditiveBlending
+      opacity: 0.45,
+      blending: AdditiveBlending,
+      depthWrite: false
     })
     const cloudsMesh = new Mesh(geometry, cloudsMat)
     cloudsMesh.scale.setScalar(1.003)
     earthGroup.add(cloudsMesh)
 
-    const fresnelMat = getFresnelMat()
+    // Sun-aware atmospheric Fresnel glow
+    const fresnelMat = getFresnelMat({ sunDirection })
     const glowMesh = new Mesh(geometry, fresnelMat)
     glowMesh.scale.setScalar(1.01)
     earthGroup.add(glowMesh)
@@ -117,36 +178,33 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
     const stars = getStarfield({ numStars: 1000 })
     scene.add(stars)
 
-    const sunLight = new DirectionalLight(0xffffff, 0.7)
-    sunLight.position.set(1, 0.5, 1.5)
+    const sunLight = new DirectionalLight(0xffffff, 2.0)
+    sunLight.position.copy(sunPos)
     scene.add(sunLight)
+
+    const ambientLight = new AmbientLight(0xffffff, 0.35)
+    scene.add(ambientLight)
 
     // Earth is now visible! Start background Phase 2 & 3
     // Start loading Phase 2 and 3 textures in parallel with Phase 1 to reduce total load time
     const p2Normal = loadTexture(
-      '/earth_texture/earthnormalmap.webp',
+      '/earth_texture/2k_earth_normal_map.webp',
       loadPromisesPhase2
     )
     const p2Spec = loadTexture(
-      '/earth_texture/8081_earthspec4k.webp',
-      loadPromisesPhase2
-    )
-    const p2Bump = loadTexture(
-      '/earth_texture/8081_earthbump4k.webp',
+      '/earth_texture/2k_earth_specular_map.webp',
       loadPromisesPhase2
     )
 
     const p3Lights = loadTexture(
-      '/earth_texture/8081_earthlights4k.webp',
-      loadPromisesPhase3
+      '/earth_texture/2k_earth_nightmap.webp',
+      loadPromisesPhase3,
+      true
     )
     const p3Clouds = loadTexture(
-      '/earth_texture/earthcloudmap.webp',
-      loadPromisesPhase3
-    )
-    const p3CloudsTrans = loadTexture(
-      '/earth_texture/earthcloudmaptrans.webp',
-      loadPromisesPhase3
+      '/earth_texture/2k_earth_clouds.webp',
+      loadPromisesPhase3,
+      true
     )
 
     // Wait only for Phase 1 (Core Map) to complete before rendering the earth
@@ -160,7 +218,6 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
         if (isDisposed) return
         material.normalMap = p2Normal
         material.specularMap = p2Spec
-        material.bumpMap = p2Bump
         material.needsUpdate = true
       })
       .catch(err => {
@@ -171,11 +228,10 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
     Promise.all(loadPromisesPhase3)
       .then(() => {
         if (isDisposed) return
-        lightsMat.map = p3Lights
+        lightsUniforms.lightsTexture.value = p3Lights
         lightsMat.needsUpdate = true
 
         cloudsMat.map = p3Clouds
-        cloudsMat.alphaMap = p3CloudsTrans
         cloudsMat.needsUpdate = true
       })
       .catch(err => {
@@ -188,6 +244,8 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
       scene.remove(stars)
       scene.remove(sunLight)
       sunLight.dispose()
+      scene.remove(ambientLight)
+      ambientLight.dispose()
       geometry.dispose()
       material.dispose()
       lightsMat.dispose()
@@ -198,6 +256,7 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
         stars.material.dispose()
       }
       disposeStarTexture()
+      emptyTexture.dispose()
       disposeTextures()
     }
 

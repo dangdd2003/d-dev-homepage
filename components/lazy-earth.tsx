@@ -9,21 +9,16 @@ const Earth = dynamic(() => import('@/components/earth'), {
   loading: () => <EarthLoader />
 })
 
-type IdleWindow = Window & {
-  requestIdleCallback?: (cb: () => void) => number
-  cancelIdleCallback?: (id: number) => void
-}
-
 export default function LazyEarth() {
   const [shouldRender, setShouldRender] = useState(false)
 
   useEffect(() => {
-    const w = window as IdleWindow
-
-    if (typeof w.requestIdleCallback === 'function') {
-      const id = w.requestIdleCallback(() => setShouldRender(true))
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(() => setShouldRender(true))
       return () => {
-        if (w.cancelIdleCallback) w.cancelIdleCallback(id)
+        if (typeof window.cancelIdleCallback === 'function') {
+          window.cancelIdleCallback(id)
+        }
       }
     }
 
