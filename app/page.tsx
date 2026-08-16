@@ -1,6 +1,5 @@
 'use client'
 
-import { BioSection, BioYear } from '@/components/bio'
 import P from '@/components/paragraph'
 import { Section } from '@/components/section'
 import { AnimatedText, RevealText, TextLoop } from '@/components/text-effect'
@@ -8,8 +7,11 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 import { Box, Button, Container, Heading, Link } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GridItemStyle } from '@/components/grid-item'
+import dynamic from 'next/dynamic'
+
+const HomeBelowFold = dynamic(() => import('@/components/home-below-fold'))
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -23,7 +25,7 @@ export default function Home() {
     align: 'center'
   }
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -118,61 +120,9 @@ export default function Home() {
           </Box>
         </Section>
 
-        <Section delay="0.5">
-          <Heading as="h3" variant="section-title">
-            <AnimatedText text="Biography" />
-          </Heading>
-          <BioSection>
-            <BioYear>2003</BioYear>
-            Born in Hanoi, Vietnam
-          </BioSection>
-          <BioSection>
-            <BioYear>2021</BioYear>
-            Started studying at University of Science and Technology of Hanoi -
-            USTH
-          </BioSection>
-          <BioSection>
-            <BioYear>2023</BioYear>
-            Internship as Backend Dev at FPT IS - Information System
-          </BioSection>
-          <BioSection>
-            <BioYear>2024</BioYear>
-            Internship as Researcher at ICT Lab - USTH, Graduated from USTH
-          </BioSection>
-          <BioSection>
-            <BioYear>Now</BioYear>
-            System/Cloud Engineer at MobiFone Corporation
-          </BioSection>
-        </Section>
-
-        <Section delay="0.7">
-          <Heading as="h3" variant="section-title">
-            <AnimatedText text="I ♥" />
-          </Heading>
-          <P>
-            Music, Piano (but haven&apos;t known how to play yet &#128533; ),
-            Reading, Computer Vision.
-          </P>
-        </Section>
-
-        <Section delay="0.9">
-          <Heading as="h3" variant="section-title">
-            <AnimatedText text="Connect to me" />
-          </Heading>
-          <Box {...props} my={4}>
-            <Button
-              as={NextLink}
-              href="/connect"
-              scroll={false}
-              rightIcon={<ChevronRightIcon />}
-              colorScheme="teal"
-            >
-              My Bio Links
-            </Button>
-          </Box>
-        </Section>
+        <HomeBelowFold />
       </Container>
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }

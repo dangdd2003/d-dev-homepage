@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GridItemStyle } from '@/components/grid-item'
 
 const variants = {
@@ -27,7 +27,7 @@ export default function More() {
     align: 'center'
   }
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -198,6 +198,6 @@ export default function More() {
         </Section>
       </Container>
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }
