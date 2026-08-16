@@ -6,7 +6,10 @@ import {
   localStorageManager
 } from '@chakra-ui/react'
 import theme from '@/lib/theme'
-import { MotionConfig } from 'framer-motion'
+import { MotionConfig, LazyMotion } from 'framer-motion'
+
+const loadFeatures = () =>
+  import('@/lib/framer-features').then(res => res.default)
 
 export function Providers({
   children,
@@ -21,10 +24,12 @@ export function Providers({
       : localStorageManager
 
   return (
-    <MotionConfig reducedMotion="user">
-      <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
-        {children}
-      </ChakraProvider>
-    </MotionConfig>
+    <LazyMotion features={loadFeatures}>
+      <MotionConfig reducedMotion="user">
+        <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
+          {children}
+        </ChakraProvider>
+      </MotionConfig>
+    </LazyMotion>
   )
 }

@@ -4,7 +4,7 @@ import { Section } from '@/components/section'
 import { AnimatedText } from '@/components/text-effect'
 import { Box, Button, Container, Divider, Heading } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GridItemStyle } from '@/components/grid-item'
 
 const variants = {
@@ -18,7 +18,7 @@ export default function NotFound() {
     align: 'center'
   }
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -45,6 +45,6 @@ export default function NotFound() {
         </Box>
       </Container>
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }

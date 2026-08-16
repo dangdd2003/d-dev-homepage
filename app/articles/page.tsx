@@ -2,7 +2,7 @@
 
 import { Container, Heading } from '@chakra-ui/react'
 import Paragraph from '@/components/paragraph'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GridItemStyle } from '@/components/grid-item'
 
 const variants = {
@@ -13,7 +13,7 @@ const variants = {
 
 export default function Post() {
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -28,6 +28,6 @@ export default function Post() {
         <Paragraph>(Still writing :D)</Paragraph>
       </Container>
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }

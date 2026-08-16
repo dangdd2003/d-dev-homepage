@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { SiGmail } from 'react-icons/si'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io'
 import { Section } from '@/components/section'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GridItemStyle } from '@/components/grid-item'
 
 const variants = {
@@ -19,7 +19,7 @@ export default function Connection() {
     align: 'center'
   }
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -77,6 +77,6 @@ export default function Connection() {
         </Box>
       </Container>
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }

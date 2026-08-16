@@ -1,4 +1,4 @@
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { m, useInView, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 
 function splitString(inputString: string): string[] {
@@ -12,22 +12,22 @@ export interface RevealTextProps {
 export function RevealText({ input }: RevealTextProps) {
   const characters = splitString(input)
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="reveal"
       transition={{ staggerChildren: 0.03 }}
       viewport={{ once: true }}
     >
       {characters.map((char, index) => (
-        <motion.span
+        <m.span
           key={index}
           transition={{ duration: 1 }}
           variants={{ hidden: { opacity: 0 }, reveal: { opacity: 1 } }}
         >
           {char}
-        </motion.span>
+        </m.span>
       ))}
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -41,7 +41,7 @@ export function AnimatedText({ text, once = true }: AnimatedTextProps) {
   const ref = useRef<HTMLSpanElement | null>(null)
   const isInView = useInView(ref, { amount: 0.5, once })
   return (
-    <motion.span
+    <m.span
       variants={{
         visible: { transition: { staggerChildren: 0.1 } },
         hidden: {}
@@ -52,15 +52,15 @@ export function AnimatedText({ text, once = true }: AnimatedTextProps) {
       aria-hidden
     >
       {characters.map((char, index) => (
-        <motion.span
+        <m.span
           variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           key={index}
           className="inline-block"
         >
           {char}
-        </motion.span>
+        </m.span>
       ))}
-    </motion.span>
+    </m.span>
   )
 }
 
@@ -90,7 +90,7 @@ export function TextLoop<const T extends readonly string[]>({
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <motion.span
+      <m.span
         style={{ display: 'inline-block' }}
         key={index}
         initial={{ y: -20, opacity: 0 }}
@@ -99,7 +99,7 @@ export function TextLoop<const T extends readonly string[]>({
         transition={{ duration: 0.3 }}
       >
         {currentText}
-      </motion.span>
+      </m.span>
     </AnimatePresence>
   )
 }

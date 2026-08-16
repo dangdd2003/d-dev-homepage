@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Head from 'next/head'
 import { GridItemStyle } from '@/components/grid-item'
 
@@ -16,7 +16,7 @@ interface LayoutProps {
 export default function Layout({ children, title }: LayoutProps) {
   const t = `${title} | Doan Dinh Dang`
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -32,6 +32,6 @@ export default function Layout({ children, title }: LayoutProps) {
       )}
       {children}
       <GridItemStyle />
-    </motion.article>
+    </m.article>
   )
 }
