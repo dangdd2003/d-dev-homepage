@@ -1,7 +1,11 @@
+import type { ReactNode } from 'react'
+import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { ColorModeScript } from '@chakra-ui/react'
+
 import { Providers } from './providers'
 import { ClientLayout } from './client-layout'
-
-import type { Metadata } from 'next'
+import { mPlusRounded1c } from '@/lib/fonts'
 
 export const metadata: Metadata = {
   title: 'Doan Dinh Dang | Homepage',
@@ -36,15 +40,24 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest'
 }
 
-import { ColorModeScript } from '@chakra-ui/react'
-import { cookies } from 'next/headers'
-
-import { mPlusRounded1c } from '@/lib/fonts'
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Doan Dinh Dang',
+  alternateName: ['Đoàn Đình Đăng', 'Đ-Dev'],
+  url: 'https://www.dangdd.dev',
+  image: 'https://www.dangdd.dev/avatars/avatar.jpg',
+  sameAs: [
+    'https://github.com/dangdd2003',
+    'https://www.linkedin.com/in/dangdd2003/'
+  ],
+  jobTitle: 'System & Cloud Engineer'
+}
 
 export default async function RootLayout({
   children
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const cookieStore = await cookies()
   const cookieString = cookieStore.toString()
@@ -55,8 +68,11 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${mPlusRounded1c.className} ${mPlusRounded1c.variable}`}
     >
-      <head></head>
       <body suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ColorModeScript initialColorMode="system" type="cookie" />
         <Providers cookies={cookieString}>
           <ClientLayout>{children}</ClientLayout>
