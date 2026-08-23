@@ -29,6 +29,16 @@ const securityHeaders = [
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
+  poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: [
+      '@chakra-ui/react',
+      '@chakra-ui/icons',
+      'framer-motion',
+      'react-icons',
+      'three'
+    ]
+  },
   eslint: {
     ignoreDuringBuilds: true
   },
@@ -47,6 +57,15 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: securityHeaders
+      },
+      {
+        source: '/(earth_texture|avatars)/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
       }
     ]
   }

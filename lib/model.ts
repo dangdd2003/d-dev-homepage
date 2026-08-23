@@ -248,6 +248,7 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
       ambientLight.dispose()
       geometry.dispose()
       material.dispose()
+      fresnelMat.dispose()
       lightsMat.dispose()
       cloudsMat.dispose()
       if (Array.isArray(stars.material)) {
@@ -255,6 +256,7 @@ export default async function createEarth(scene: Scene): Promise<EarthModel> {
       } else {
         stars.material.dispose()
       }
+      stars.geometry.dispose()
       disposeStarTexture()
       emptyTexture.dispose()
       disposeTextures()

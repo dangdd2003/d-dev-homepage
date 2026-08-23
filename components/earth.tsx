@@ -50,7 +50,7 @@ export default function Earth() {
         antialias: true,
         alpha: true
       })
-      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       renderer.setSize(scW, scH)
       renderer.outputColorSpace = SRGBColorSpace
 
@@ -148,6 +148,18 @@ export default function Earth() {
       let frame = 0
       let active = true
       let disposeEarth: (() => void) | null = null
+      let isVisible = true
+
+      const observer = new IntersectionObserver(
+        entries => {
+          if (entries[0]) {
+            isVisible = entries[0].isIntersecting
+          }
+        },
+        { threshold: 0.05 }
+      )
+      observer.observe(container)
+
       createEarth(scene)
         .then(earthData => {
           if (!active) {
@@ -166,6 +178,8 @@ export default function Earth() {
           disposeEarth = dispose
           const animate = () => {
             req = requestAnimationFrame(animate)
+
+            if (!isVisible || document.hidden) return
 
             earthMesh.rotation.y += 0.002
             lightsMesh.rotation.y += 0.002
@@ -214,6 +228,7 @@ export default function Earth() {
 
       return () => {
         cancelAnimationFrame(req)
+        observer.disconnect()
         controls.removeEventListener('start', onControlsStart)
         controls.removeEventListener('end', onControlsEnd)
         controls.dispose()
