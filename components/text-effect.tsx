@@ -9,25 +9,41 @@ export interface RevealTextProps {
   input: string
 }
 
+const srOnlyStyle: React.CSSProperties = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: 0,
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  border: 0
+}
+
 export function RevealText({ input }: RevealTextProps) {
   const characters = splitString(input)
   return (
-    <m.div
-      initial="hidden"
-      whileInView="reveal"
-      transition={{ staggerChildren: 0.03 }}
-      viewport={{ once: true }}
-    >
-      {characters.map((char, index) => (
-        <m.span
-          key={index}
-          transition={{ duration: 1 }}
-          variants={{ hidden: { opacity: 0 }, reveal: { opacity: 1 } }}
-        >
-          {char}
-        </m.span>
-      ))}
-    </m.div>
+    <span style={{ position: 'relative', display: 'inline-block' }}>
+      <span style={srOnlyStyle}>{input}</span>
+      <m.div
+        initial="hidden"
+        whileInView="reveal"
+        transition={{ staggerChildren: 0.03 }}
+        viewport={{ once: true }}
+        aria-hidden="true"
+      >
+        {characters.map((char, index) => (
+          <m.span
+            key={index}
+            transition={{ duration: 1 }}
+            variants={{ hidden: { opacity: 0 }, reveal: { opacity: 1 } }}
+          >
+            {char}
+          </m.span>
+        ))}
+      </m.div>
+    </span>
   )
 }
 
@@ -41,26 +57,29 @@ export function AnimatedText({ text, once = true }: AnimatedTextProps) {
   const ref = useRef<HTMLSpanElement | null>(null)
   const isInView = useInView(ref, { amount: 0.5, once })
   return (
-    <m.span
-      variants={{
-        visible: { transition: { staggerChildren: 0.1 } },
-        hidden: {}
-      }}
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      aria-hidden
-    >
-      {characters.map((char, index) => (
-        <m.span
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-          key={index}
-          className="inline-block"
-        >
-          {char}
-        </m.span>
-      ))}
-    </m.span>
+    <span style={{ position: 'relative', display: 'inline-block' }}>
+      <span style={srOnlyStyle}>{text}</span>
+      <m.span
+        variants={{
+          visible: { transition: { staggerChildren: 0.1 } },
+          hidden: {}
+        }}
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        aria-hidden="true"
+      >
+        {characters.map((char, index) => (
+          <m.span
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+            key={index}
+            className="inline-block"
+          >
+            {char}
+          </m.span>
+        ))}
+      </m.span>
+    </span>
   )
 }
 

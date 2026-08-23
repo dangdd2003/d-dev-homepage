@@ -41,6 +41,20 @@ import { cookies } from 'next/headers'
 
 import { mPlusRounded1c } from '@/lib/fonts'
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Doan Dinh Dang',
+  alternateName: ['Đoàn Đình Đăng', 'Đ-Dev'],
+  url: 'https://www.dangdd.dev',
+  image: 'https://www.dangdd.dev/avatars/avatar.jpg',
+  sameAs: [
+    'https://github.com/dangdd2003',
+    'https://www.linkedin.com/in/dangdd2003/'
+  ],
+  jobTitle: 'System & Cloud Engineer'
+}
+
 export default async function RootLayout({
   children
 }: {
@@ -55,7 +69,12 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${mPlusRounded1c.className} ${mPlusRounded1c.variable}`}
     >
-      <head></head>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body suppressHydrationWarning>
         <ColorModeScript initialColorMode="system" type="cookie" />
         <Providers cookies={cookieString}>
