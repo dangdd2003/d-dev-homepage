@@ -14,7 +14,7 @@ const Earth = dynamic(() => import('@/components/earth'), {
 export default function Main({
   children,
   router,
-  baseUrl = 'https://www.dangdd.dev'
+  baseUrl = 'https://old.dangdd.dev'
 }: {
   children?: React.ReactNode
   router: NextRouter
@@ -28,14 +28,14 @@ export default function Main({
     <Box as="main" pb={8}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Doan Dinh Dang's Homepage" />
+        <meta name="description" content="Doan Dinh Dang's Legacy Homepage" />
         <meta name="author" content="Doan Dinh Dang" />
         <meta name="author" content="Đoàn Đình Đăng" />
         <meta name="author" content="d-dev" />
 
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Doan Dinh Dang | Homepage" />
+        <meta property="og:title" content="Doan Dinh Dang | Legacy Homepage" />
         <meta property="og:description" content="Dang's Homepage" />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:site_name" content="Doan Dinh Dang" />
@@ -43,7 +43,7 @@ export default function Main({
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content={twitterDomain} />
         <meta property="twitter:url" content={pageUrl} />
-        <meta name="twitter:title" content="Doan Dinh Dang | Homepage" />
+        <meta name="twitter:title" content="Doan Dinh Dang | Legacy Homepage" />
         <meta name="twitter:description" content="Dang's Homepage" />
         <meta name="twitter:image" content={imageUrl} />
         <link
@@ -64,7 +64,7 @@ export default function Main({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <title>Doan Dinh Dang | Homepage</title>
+        <title>Doan Dinh Dang | Legacy Homepage</title>
       </Head>
 
       <Navbar path={router.asPath} />

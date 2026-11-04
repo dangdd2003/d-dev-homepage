@@ -8,25 +8,25 @@ import { ClientLayout } from './client-layout'
 import { mPlusRounded1c } from '@/lib/fonts'
 
 export const metadata: Metadata = {
-  title: 'Doan Dinh Dang | Homepage',
-  description: "Doan Dinh Dang's Homepage",
+  title: 'Doan Dinh Dang | Legacy Homepage',
+  description: "Doan Dinh Dang's Legacy Homepage",
   authors: [
     { name: 'Doan Dinh Dang' },
     { name: 'Đoàn Đình Đăng' },
     { name: 'Đ-Dev' }
   ],
-  metadataBase: new URL('https://www.dangdd.dev'),
+  metadataBase: new URL('https://old.dangdd.dev'),
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Doan Dinh Dang | Homepage',
+    title: 'Doan Dinh Dang | Legacy Homepage',
     description: "Dang's Homepage",
     siteName: 'Doan Dinh Dang',
     images: [{ url: '/homepage.png' }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Doan Dinh Dang | Homepage',
+    title: 'Doan Dinh Dang | Legacy Homepage',
     description: "Dang's Homepage",
     images: ['/homepage.png']
   },
@@ -45,8 +45,8 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Doan Dinh Dang',
   alternateName: ['Đoàn Đình Đăng', 'Đ-Dev'],
-  url: 'https://www.dangdd.dev',
-  image: 'https://www.dangdd.dev/avatars/avatar.jpg',
+  url: 'https://old.dangdd.dev',
+  image: 'https://old.dangdd.dev/avatars/avatar.jpg',
   sameAs: [
     'https://github.com/dangdd2003',
     'https://www.linkedin.com/in/dangdd2003/'

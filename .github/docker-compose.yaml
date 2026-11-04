@@ -39,12 +39,9 @@ services:
     image: ghcr.io/dangdd2003/d-dev-homepage:main
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.homepage-router.rule=Host(`dangdd.me`) || Host(`www.dangdd.me`)'
+      - 'traefik.http.routers.homepage-router.rule=Host(`old.dangdd.dev`)'
       - 'traefik.http.routers.homepage-router.entrypoints=websecure'
       - 'traefik.http.routers.homepage-router.tls=true'
-      - 'traefik.http.routers.homepage-router.middlewares=homepage-middlewares'
-      - 'traefik.http.middlewares.homepage-middlewares.redirectregex.regex=^https?://(?:www\.)?(.+)'
-      - 'traefik.http.middlewares.homepage-middlewares.redirectregex.replacement=https://www.$${1}'
       - 'com.centurylinklabs.watchtower.enable=true'
     deploy:
       mode: replicated

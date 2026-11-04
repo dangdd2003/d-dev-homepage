@@ -1,6 +1,9 @@
-# D-Dev's Homepage
+# D-Dev's Legacy Homepage
 
-<https://www.dangdd.dev>
+<https://old.dangdd.dev>
+
+> This is my old homepage, now kept as a legacy page at
+> [old.dangdd.dev](https://old.dangdd.dev).
 
 ## Image
 
