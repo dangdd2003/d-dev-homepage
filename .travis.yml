@@ -1,0 +1,90 @@
+# Travis CI pipeline: test -> build & push image to Docker Hub
+#
+# Required repository settings on travis-ci.com
+# (More options -> Settings -> Environment Variables, keep "Display value" OFF):
+#   DOCKER_USERNAME  Docker Hub username (dangdoan2003)
+#   DOCKER_PASSWORD  Docker Hub Personal Access Token with "Read & Write" scope
+#
+# Docs:
+#   https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+#   https://docs.travis-ci.com/user/build-stages/
+#   https://docs.travis-ci.com/user/conditions-v1
+#   https://docs.travis-ci.com/user/docker/
+
+version: ~> 1.0
+
+os: linux
+dist: noble
+language: node_js
+node_js: lts/*
+
+# Avoid wasting student credits: only build main + PRs targeting it
+branches:
+  only:
+    - main
+
+env:
+  global:
+    - NEXT_TELEMETRY_DISABLED=1
+    - DOCKER_HUB_NAMESPACE=dangdoan2003
+    - IMAGE_NAME=d-dev-homepage
+
+stages:
+  - name: test
+  - name: docker
+    # Only real pushes to main publish an image. PRs (incl. forks) never see
+    # the Docker Hub secrets.
+    if: branch = main AND type = push AND fork = false
+
+jobs:
+  include:
+    # ---------------------------------------------------------------- test
+    - stage: test
+      name: Lint, format check and build
+      cache:
+        npm: true
+        directories:
+          - .next/cache
+      # Travis runs `npm ci` automatically because package-lock.json exists
+      script:
+        - npm run lint
+        - npm run prettier:check
+        - npm run build
+
+    # -------------------------------------------------------------- docker
+    - stage: docker
+      name: Build and push image to Docker Hub
+      services:
+        - docker
+      cache: false
+      install: skip
+      before_script:
+        - export IMAGE="docker.io/${DOCKER_HUB_NAMESPACE}/${IMAGE_NAME}"
+        - export SHORT_SHA="${TRAVIS_COMMIT:0:7}"
+        # BuildKit is needed for .github/Dockerfile.dockerignore and inline cache
+        - export DOCKER_BUILDKIT=1
+        - docker version
+        # Login first so the node:lts-alpine pulls are authenticated
+        # (higher Docker Hub pull rate limit)
+        - echo "${DOCKER_PASSWORD}" | docker login docker.io -u "${DOCKER_USERNAME}" --password-stdin
+      script:
+        - >-
+          docker build
+          --file .github/Dockerfile
+          --build-arg BUILDKIT_INLINE_CACHE=1
+          --cache-from "${IMAGE}:main"
+          --label org.opencontainers.image.source="https://github.com/${TRAVIS_REPO_SLUG}"
+          --label org.opencontainers.image.revision="${TRAVIS_COMMIT}"
+          --label org.opencontainers.image.created="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          --tag "${IMAGE}:main"
+          --tag "${IMAGE}:latest"
+          --tag "${IMAGE}:sha-${SHORT_SHA}"
+          .
+        # Smoke test: the container must start and answer on port 3000
+        - docker run -d --name smoke -p 3000:3000 "${IMAGE}:main"
+        - for i in $(seq 1 30); do curl -fsS -o /dev/null http://localhost:3000/ && break; sleep 1; done
+        - curl -fsS -o /dev/null http://localhost:3000/ || (docker logs smoke; exit 1)
+        - docker rm -f smoke
+        - docker push --all-tags "${IMAGE}"
+      after_script:
+        - docker logout docker.io

@@ -11,3 +11,4 @@
 !.github/README.md
 !.github/homepage.png
 **/ssl-cert
+.travis.yml
