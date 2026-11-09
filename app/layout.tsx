@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { ColorModeScript } from '@chakra-ui/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { Providers } from './providers'
 import { ClientLayout } from './client-layout'
@@ -77,6 +78,7 @@ export default async function RootLayout({
         <Providers cookies={cookieString}>
           <ClientLayout>{children}</ClientLayout>
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
