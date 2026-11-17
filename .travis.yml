@@ -61,18 +61,21 @@ jobs:
       before_script:
         - export IMAGE="docker.io/${DOCKER_HUB_NAMESPACE}/${IMAGE_NAME}"
         - export SHORT_SHA="${TRAVIS_COMMIT:0:7}"
-        # BuildKit is needed for .github/Dockerfile.dockerignore and inline cache
-        - export DOCKER_BUILDKIT=1
         - docker version
+        - docker buildx version
         # Login first so the node:lts-alpine pulls are authenticated
         # (higher Docker Hub pull rate limit)
         - echo "${DOCKER_PASSWORD}" | docker login docker.io -u "${DOCKER_USERNAME}" --password-stdin
+        # The container driver supports exporting every intermediate build stage.
+        - docker buildx create --name ci-builder --driver docker-container --use
+        - docker buildx inspect --bootstrap
       script:
         - >-
-          docker build
+          docker buildx build
           --file .github/Dockerfile
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --cache-from "${IMAGE}:main"
+          --cache-from type=registry,ref="${IMAGE}:buildcache"
+          --cache-to type=registry,ref="${IMAGE}:buildcache",mode=max
+          --load
           --label org.opencontainers.image.source="https://github.com/${TRAVIS_REPO_SLUG}"
           --label org.opencontainers.image.revision="${TRAVIS_COMMIT}"
           --label org.opencontainers.image.created="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -87,4 +90,5 @@ jobs:
         - docker rm -f smoke
         - docker push --all-tags "${IMAGE}"
       after_script:
+        - docker buildx rm ci-builder
         - docker logout docker.io
